@@ -31,12 +31,12 @@ class SporeClient():
 
     async def get_stats(self) -> Stats:
         return Stats.from_dict(
-            await self.request(f"{self.BASE_URL}/rest/stats")
+            await self.request(f"{self._base_url}/rest/stats")
         )
 
     async def get_creature(self, creature_id: Union[int, str]) -> Creature:
         return Creature.from_dict(
-            await self.request(f"{self.BASE_URL}/rest/creature/{creature_id}")
+            await self.request(f"{self._base_url}/rest/creature/{creature_id}")
         )
 
     async def request(self, url: str) -> dict[str, Any]:
