@@ -128,7 +128,7 @@ class Sporecast(ABCModel):
 
     @classmethod
     def from_dict(cls: type[SporecastType], data: dict[str, Any]) -> SporecastType:
-        data = data["user"]
+        data = data["sporecast"]
         return cls(
             id=int(data["id"]),
             title=data["title"],

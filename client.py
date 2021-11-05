@@ -36,7 +36,7 @@ class SporeClient():
 
     async def get_creature(self, creature_id: Union[int, str]) -> Creature:
         return Creature.from_dict(
-            await self.request(f"{self.BASE_URL}/rest/stats")
+            await self.request(f"{self.BASE_URL}/rest/creature/{creature_id}")
         )
 
     async def request(self, url: str) -> dict[str, Any]:
@@ -45,8 +45,7 @@ class SporeClient():
 
         async with self._session.get(url) as responce:
             responce.raise_for_status()
-
-        return self._decoder(await responce.text())
+            return self._decoder(await responce.text())
 
     async def close(self) -> None:
         if self._session is None:
