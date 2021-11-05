@@ -1,5 +1,5 @@
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, Callable, Optional, Union
+from typing import Any, Callable, Optional, Type, Union
 import aiohttp
 
 import xmltodict
@@ -10,9 +10,6 @@ from models import (
     Creature
 )
 
-if TYPE_CHECKING:
-    from models import ModelType
-
 
 class SporeClient():
     def __init__(self) -> None:
@@ -22,7 +19,10 @@ class SporeClient():
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:
         self._session = session
 
-    async def __aenter__(self, session: Optional[aiohttp.ClientSession] = None):
+    async def __aenter__(
+        self,
+        session: Optional[aiohttp.ClientSession] = None
+    ) -> "SporeClient":
         if session is None:
             session = aiohttp.ClientSession()
 
@@ -55,7 +55,7 @@ class SporeClient():
 
     async def __aexit__(
         self,
-        _exception_type: type[BaseException],
+        _exception_type: Type[BaseException],
         _exception: BaseException,
         _traceback: TracebackType
     ) -> None:

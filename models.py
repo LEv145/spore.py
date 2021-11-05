@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, TypeVar
+from typing import Any, TypeVar, Type
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
@@ -10,7 +10,7 @@ ModelType = TypeVar("ModelType", bound="ABCModel")
 class ABCModel(ABC):
     @classmethod
     @abstractmethod
-    def from_dict(cls: type[ModelType], data: dict[str, Any]) -> ModelType:
+    def from_dict(cls: Type[ModelType], data: dict[str, Any]) -> ModelType:
         """Собираем объект из словаря"""
 
 
@@ -24,7 +24,7 @@ class Stats(ABCModel):
     day_users: int
 
     @classmethod
-    def from_dict(cls: type[StatsType], data: dict[str, Any]) -> StatsType:
+    def from_dict(cls: Type[StatsType], data: dict[str, Any]) -> StatsType:
         data = data["stats"]  # FIXME: Странно
         return cls(
             total_uploads=int(data["totalUploads"]),
@@ -63,7 +63,7 @@ class Creature(ABCModel):
     posture: float
 
     @classmethod
-    def from_dict(cls: type[CreatureType], data: dict[str, Any]) -> CreatureType:
+    def from_dict(cls: Type[CreatureType], data: dict[str, Any]) -> CreatureType:
         data = data["creature"]
         return cls(
             cost=int(data["cost"]),
@@ -102,7 +102,7 @@ class User(ABCModel):
     create_at: datetime
 
     @classmethod
-    def from_dict(cls: type[UserType], data: dict[str, Any]) -> UserType:
+    def from_dict(cls: Type[UserType], data: dict[str, Any]) -> UserType:
         data = data["user"]
         return cls(
             id=int(data["id"]),
@@ -127,7 +127,7 @@ class Sporecast(ABCModel):
     count: int  # Каунт чего?
 
     @classmethod
-    def from_dict(cls: type[SporecastType], data: dict[str, Any]) -> SporecastType:
+    def from_dict(cls: Type[SporecastType], data: dict[str, Any]) -> SporecastType:
         data = data["sporecast"]
         return cls(
             id=int(data["id"]),
@@ -160,7 +160,7 @@ class Asset(ABCModel):
     tags: str  # TODO
 
     @classmethod
-    def from_dict(cls: type[AssetType], data: dict[str, Any]) -> AssetType:
+    def from_dict(cls: Type[AssetType], data: dict[str, Any]) -> AssetType:
         data = data["asset"]
         return cls(
             id=int(data["id"]),
