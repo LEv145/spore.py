@@ -1,7 +1,8 @@
+import json
 from datetime import datetime
-from typing import Any, TypeVar, Type
+from typing import Any, Dict, TypeVar, Type
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 
 ModelType = TypeVar("ModelType", bound="ABCModel")
@@ -13,6 +14,11 @@ class ABCModel(ABC):
     def from_dict(cls: Type[ModelType], data: dict[str, Any]) -> ModelType:
         """Собираем объект из словаря"""
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+    def to_json(self) -> str:  # TODO
+        raise NotImplementedError
 
 @dataclass
 class Stats(ABCModel):
