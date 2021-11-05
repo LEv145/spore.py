@@ -1,7 +1,7 @@
 from types import TracebackType
 from typing import Any, Callable, Optional, Type, Union
-import aiohttp
 
+import aiohttp
 import xmltodict
 
 from constants import BASE_URL
