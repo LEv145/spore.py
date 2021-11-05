@@ -30,23 +30,23 @@ class SporeClient():
         return self
 
     async def get_stats(self) -> Stats:
-        return await self.request(f"{self.BASE_URL}/rest/stats", Stats)
-
-    async def get_creature(self, creature_id: Union[int, str]) -> Creature:
-        return await self.request(
-            f"{self.BASE_URL}rest/creature/{creature_id}", Creature
+        return Stats.from_dict(
+            await self.request(f"{self.BASE_URL}/rest/stats")
         )
 
-    async def request(self, url: str, model: type["ModelType"]) -> "ModelType":
+    async def get_creature(self, creature_id: Union[int, str]) -> Creature:
+        return Creature.from_dict(
+            await self.request(f"{self.BASE_URL}/rest/stats")
+        )
+
+    async def request(self, url: str) -> dict[str, Any]:
         if self._session is None:
             raise ValueError("The session does not exist")
 
         async with self._session.get(url) as responce:
             responce.raise_for_status()
 
-            return model.from_dict(  # TODO: +метод
-                self._decoder(await responce.text())
-            )
+        return self._decoder(await responce.text())
 
     async def close(self) -> None:
         if self._session is None:
