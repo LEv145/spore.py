@@ -4,8 +4,8 @@ from typing import Any, Callable, Optional, Type, Union
 import aiohttp
 import xmltodict
 
-from constants import BASE_URL
-from models import (
+from .constants import BASE_URL
+from .models import (
     Stats,
     Creature
 )
