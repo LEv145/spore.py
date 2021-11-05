@@ -13,7 +13,7 @@ from models import (
 
 class SporeClient():
     def __init__(self) -> None:
-        self.BASE_URL = BASE_URL
+        self._base_url = BASE_URL
         self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
 
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:
