@@ -1,6 +1,6 @@
 import unittest
 
-from models import Stats
+from spore_api.models import Stats
 
 
 class TestModels(unittest.TestCase):
