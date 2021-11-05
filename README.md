@@ -5,6 +5,7 @@ Spore Api
 Simple example:
 ```py
 import asyncio
+
 from spore_api.client import SporeClient
 
 
