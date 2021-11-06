@@ -9,6 +9,7 @@ from .utils import datatime_from_string
 if TYPE_CHECKING:
     from datetime import datetime
 
+
 ModelType = TypeVar("ModelType", bound="ABCModel")
 
 
