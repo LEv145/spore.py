@@ -1,8 +1,12 @@
-from datetime import datetime
-from typing import Any, Dict, TypeVar, Type
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, TypeVar, Type
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, asdict
 
+from .constants import BASE_URL
+from .utils import datatime_from_string
+
+if TYPE_CHECKING:
+    from datetime import datetime
 
 ModelType = TypeVar("ModelType", bound="ABCModel")
 
@@ -10,7 +14,7 @@ ModelType = TypeVar("ModelType", bound="ABCModel")
 class ABCModel(ABC):
     @classmethod
     @abstractmethod
-    def from_dict(cls: Type[ModelType], data: dict[str, Any]) -> ModelType:
+    def from_dict(cls: Type[ModelType], data: Dict[str, Any]) -> ModelType:
         """Собираем объект из словаря"""
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,7 +33,7 @@ class Stats(ABCModel):
     day_users: int
 
     @classmethod
-    def from_dict(cls: Type[StatsType], data: dict[str, Any]) -> StatsType:
+    def from_dict(cls: Type[StatsType], data: Dict[str, Any]) -> StatsType:
         data = data["stats"]  # FIXME: Странно
         return cls(
             total_uploads=int(data["totalUploads"]),
@@ -68,7 +72,7 @@ class Creature(ABCModel):
     posture: float
 
     @classmethod
-    def from_dict(cls: Type[CreatureType], data: dict[str, Any]) -> CreatureType:
+    def from_dict(cls: Type[CreatureType], data: Dict[str, Any]) -> CreatureType:
         data = data["creature"]
         return cls(
             cost=int(data["cost"]),
@@ -104,16 +108,16 @@ class User(ABCModel):
     id: int
     image_url: str
     tagline: str
-    create_at: datetime
+    create_at: "datetime"
 
     @classmethod
-    def from_dict(cls: Type[UserType], data: dict[str, Any]) -> UserType:
+    def from_dict(cls: Type[UserType], data: Dict[str, Any]) -> UserType:
         data = data["user"]
         return cls(
             id=int(data["id"]),
             image_url=data["image"],
             tagline=data["tagline"],
-            create_at=datetime.strptime(data["creation"], "%Y-%m-%d %H:%M:%S.%f")
+            create_at=datatime_from_string(data["creation"])
         )
 
 
@@ -125,14 +129,14 @@ class Sporecast(ABCModel):
     title: str
     subtitle: str
     author_name: str
-    update_at: datetime
+    update_at: "datetime"
     rating: float
     subscription_count: str
-    tags: list[str]  # TODO: Tag object
+    tags: List[str]  # TODO: Tag object
     count: int  # Каунт чего?
 
     @classmethod
-    def from_dict(cls: Type[SporecastType], data: dict[str, Any]) -> SporecastType:
+    def from_dict(cls: Type[SporecastType], data: Dict[str, Any]) -> SporecastType:
         data = data["sporecast"]
         return cls(
             id=int(data["id"]),
@@ -156,7 +160,8 @@ class Asset(ABCModel):
     thumbnail_url: str
     image_url: str
     author_name: str
-    create_at: datetime
+    author_id: Optional[int]
+    create_at: "datetime"
     rating: float
     asset_type: str  # TODO: Enum?
     subtype: str  # TODO
@@ -165,19 +170,75 @@ class Asset(ABCModel):
     tags: str  # TODO
 
     @classmethod
-    def from_dict(cls: Type[AssetType], data: dict[str, Any]) -> AssetType:
+    def from_dict(cls: Type[AssetType], data: Dict[str, Any]) -> AssetType:
         data = data["asset"]
+
         return cls(
             id=int(data["id"]),
             name=data["name"],
             thumbnail_url=data["thumb"],
             image_url=data["image_url"],
             author_name=data["author"],
-            create_at=datetime.strptime(data["created"], "%Y-%m-%d %H:%M:%S.%f"),
+            create_at=datatime_from_string(data["created"]),
             rating=float(data["rating"]),
             asset_type=data["type"],
             subtype=data["subtype"],
             parent=data["parent"],
             description=data["description"],
-            tags=data["tags"]
+            tags=data["tags"],
+            author_id=(
+                None
+                if data.get("authorid") is None else
+                int(data["authorid"])
+            )
+        )
+
+
+@dataclass
+class Achievement(ABCModel):
+    AchievementType = TypeVar("AchievementType", bound="Achievement")
+
+    guild: str
+    image_url: str
+    date: "datetime"
+
+    @classmethod
+    def from_dict(cls: Type[AchievementType], data: Dict[str, Any]) -> AchievementType:
+        data = data["achievement"]
+        return cls(
+            guild=data["guild"],
+            image_url=f"{BASE_URL}/static/war/images/achievements/{data['guild']}.png",
+            date=datatime_from_string(data["date"])
+        )
+
+
+@dataclass
+class Comment(ABCModel):
+    CommentType = TypeVar("CommentType", bound="Comment")
+
+    message: str
+    sender_name: str
+
+    @classmethod
+    def from_dict(cls: Type[CommentType], data: Dict[str, Any]) -> CommentType:
+        data = data["comment"]
+        return cls(
+            message=data["message"],
+            sender_name=data["sender"]
+        )
+
+
+@dataclass
+class Buddy(ABCModel):
+    BuddyType = TypeVar("BuddyType", bound="Buddy")
+
+    name: str
+    id: int
+
+    @classmethod
+    def from_dict(cls: Type[BuddyType], data: Dict[str, Any]) -> BuddyType:
+        data = data["buddy"]
+        return cls(
+            name=data["name"],
+            id=int(data["id"])
         )
