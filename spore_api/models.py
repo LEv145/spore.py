@@ -25,6 +25,7 @@ class ABCModel(ABC):
     def to_json(self) -> str:  # TODO
         raise NotImplementedError
 
+
 @dataclass
 class Stats(ABCModel):
     StatsType = TypeVar("StatsType", bound="Stats")
