@@ -19,8 +19,8 @@ class ABCModel(ABC):
     def from_dict(cls: Type[ModelType], data: Dict[str, Any]) -> ModelType:
         """Собираем объект из словаря"""
 
-    def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+    def to_dict(self) -> Dict[str, Any]:  # TODO
+        raise NotImplementedError
 
     def to_json(self) -> str:  # TODO
         raise NotImplementedError
@@ -134,7 +134,7 @@ class Sporecast(ABCModel):
     author_name: str
     update_at: "datetime"
     rating: float
-    subscription_count: str
+    subscription_count: int
     tags: List[str]
     assets_count: int
 
