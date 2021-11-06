@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, TypeVar, Type
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, asdict
 
+from . import enums
 from .constants import BASE_URL
 from .utils import datatime_from_string
 
@@ -132,8 +133,8 @@ class Sporecast(ABCModel):
     update_at: "datetime"
     rating: float
     subscription_count: str
-    tags: List[str]  # TODO: Tag object
-    count: int  # Каунт чего?
+    tags: List[str]
+    assets_count: int
 
     @classmethod
     def from_dict(cls: Type[SporecastType], data: Dict[str, Any]) -> SporecastType:
@@ -147,7 +148,7 @@ class Sporecast(ABCModel):
             rating=float(data["rating"]),
             subscription_count=data["subscriptioncount"],
             tags=data["tags"][1:-1].split(", "),
-            count=int(data["count"])
+            assets_count=int(data["count"])
         )
 
 
@@ -163,15 +164,22 @@ class Asset(ABCModel):
     author_id: Optional[int]
     create_at: "datetime"
     rating: float
-    asset_type: str  # TODO: Enum?
+    type: enums.AssetType
     subtype: str  # TODO
     parent: str  # TODO
     description: str
-    tags: str  # TODO
+    tags: Optional[List[str]]
 
     @classmethod
     def from_dict(cls: Type[AssetType], data: Dict[str, Any]) -> AssetType:
         data = data["asset"]
+
+        data_tags: str = data["tags"]  # FIXME: Better name?
+
+        if data_tags == "NULL":
+            tags = None
+        else:
+            tags = data_tags.split(",")
 
         return cls(
             id=int(data["id"]),
@@ -181,11 +189,11 @@ class Asset(ABCModel):
             author_name=data["author"],
             create_at=datatime_from_string(data["created"]),
             rating=float(data["rating"]),
-            asset_type=data["type"],
+            type=enums.AssetType(data["type"]),
             subtype=data["subtype"],
             parent=data["parent"],
             description=data["description"],
-            tags=data["tags"],
+            tags=tags,
             author_id=(
                 None
                 if data.get("authorid") is None else
