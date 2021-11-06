@@ -1,1 +1,1 @@
-BASE_URL = "http://www.spore.com/"
+BASE_URL = "http://www.spore.com"
