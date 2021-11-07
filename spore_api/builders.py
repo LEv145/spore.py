@@ -1,6 +1,5 @@
 from typing import List
 
-
 from .utils import datatime_from_string
 from .abc import ABCBuilder
 from .enums import AssetType
