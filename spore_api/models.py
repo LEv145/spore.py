@@ -48,34 +48,34 @@ class Creature():
     gesture: float
     posture: float
 
-    @classmethod
-    def from_dict(cls: Type[CreatureType], data: Dict[str, Any]) -> CreatureType:
-        data = data["creature"]
-        return cls(
-            cost=int(data["cost"]),
-            health=float(data["health"]),
-            height=float(data["height"]),
-            meanness=float(data["meanness"]),
-            cuteness=float(data["cuteness"]),
-            sense=float(data["sense"]),
-            bonecount=float(data["bonecount"]),
-            footcount=float(data["footcount"]),
-            graspercount=float(data["graspercount"]),
-            basegear=float(data["basegear"]),
-            carnivore=float(data["carnivore"]),
-            herbivore=float(data["herbivore"]),
-            glide=float(data["glide"]),
-            sprint=float(data["sprint"]),
-            stealth=float(data["stealth"]),
-            bite=float(data["bite"]),
-            charge=float(data["charge"]),
-            strike=float(data["strike"]),
-            spit=float(data["spit"]),
-            sing=float(data["sing"]),
-            dance=float(data["dance"]),
-            gesture=float(data["gesture"]),
-            posture=float(data["posture"]),
-        )
+    # @classmethod
+    # def from_dict(cls: Type[CreatureType], data: Dict[str, Any]) -> CreatureType:
+    #     data = data["creature"]
+    #     return cls(
+    #         cost=int(data["cost"]),
+    #         health=float(data["health"]),
+    #         height=float(data["height"]),
+    #         meanness=float(data["meanness"]),
+    #         cuteness=float(data["cuteness"]),
+    #         sense=float(data["sense"]),
+    #         bonecount=float(data["bonecount"]),
+    #         footcount=float(data["footcount"]),
+    #         graspercount=float(data["graspercount"]),
+    #         basegear=float(data["basegear"]),
+    #         carnivore=float(data["carnivore"]),
+    #         herbivore=float(data["herbivore"]),
+    #         glide=float(data["glide"]),
+    #         sprint=float(data["sprint"]),
+    #         stealth=float(data["stealth"]),
+    #         bite=float(data["bite"]),
+    #         charge=float(data["charge"]),
+    #         strike=float(data["strike"]),
+    #         spit=float(data["spit"]),
+    #         sing=float(data["sing"]),
+    #         dance=float(data["dance"]),
+    #         gesture=float(data["gesture"]),
+    #         posture=float(data["posture"]),
+    #     )
 
 
 @dataclass
@@ -87,15 +87,15 @@ class User():
     tagline: str
     create_at: "datetime"
 
-    @classmethod
-    def from_dict(cls: Type[UserType], data: Dict[str, Any]) -> UserType:
-        data = data["user"]
-        return cls(
-            id=int(data["id"]),
-            image_url=data["image"],
-            tagline=data["tagline"],
-            create_at=datatime_from_string(data["creation"])
-        )
+    # @classmethod
+    # def from_dict(cls: Type[UserType], data: Dict[str, Any]) -> UserType:
+    #     data = data["user"]
+    #     return cls(
+    #         id=int(data["id"]),
+    #         image_url=data["image"],
+    #         tagline=data["tagline"],
+    #         create_at=datatime_from_string(data["creation"])
+    #     )
 
 
 @dataclass
@@ -112,20 +112,20 @@ class Sporecast():
     tags: List[str]
     assets_count: int
 
-    @classmethod
-    def from_dict(cls: Type[SporecastType], data: Dict[str, Any]) -> SporecastType:
-        data = data["sporecast"]
-        return cls(
-            id=int(data["id"]),
-            title=data["title"],
-            subtitle=data["subtitle"],
-            author_name=data["author"],
-            update_at=data["updated"],
-            rating=float(data["rating"]),
-            subscription_count=data["subscriptioncount"],
-            tags=data["tags"][1:-1].split(", "),
-            assets_count=int(data["count"])
-        )
+    # @classmethod
+    # def from_dict(cls: Type[SporecastType], data: Dict[str, Any]) -> SporecastType:
+    #     data = data["sporecast"]
+    #     return cls(
+    #         id=int(data["id"]),
+    #         title=data["title"],
+    #         subtitle=data["subtitle"],
+    #         author_name=data["author"],
+    #         update_at=data["updated"],
+    #         rating=float(data["rating"]),
+    #         subscription_count=data["subscriptioncount"],
+    #         tags=data["tags"][1:-1].split(", "),
+    #         assets_count=int(data["count"])
+    #     )
 
 
 @dataclass
@@ -146,35 +146,6 @@ class Asset():
     description: str
     tags: Optional[List[str]]
 
-    @classmethod
-    def from_dict(cls: Type[AssetType], data: Dict[str, Any]) -> AssetType:
-        data = data["asset"]
-
-        data_tags: str = data["tags"]  # FIXME: Better name?
-
-        tags = None if data["tags"] == "NULL" else data["tags"].split(",")
-
-
-        return cls(
-            id=int(data["id"]),
-            name=data["name"],
-            thumbnail_url=data["thumb"],
-            image_url=data["image_url"],
-            author_name=data["author"],
-            create_at=datatime_from_string(data["created"]),
-            rating=float(data["rating"]),
-            type=enums.AssetType(data["type"]),
-            subtype=data["subtype"],
-            parent=data["parent"],
-            description=data["description"],
-            tags=tags,
-            author_id=(
-                None
-                if data.get("authorid") is None else
-                int(data["authorid"])
-            )
-        )
-
 
 @dataclass
 class Achievement():
@@ -184,14 +155,14 @@ class Achievement():
     image_url: str
     date: "datetime"
 
-    @classmethod
-    def from_dict(cls: Type[AchievementType], data: Dict[str, Any]) -> AchievementType:
-        data = data["achievement"]
-        return cls(
-            guild=data["guild"],
-            image_url=f"{BASE_URL}/static/war/images/achievements/{data['guild']}.png",
-            date=datatime_from_string(data["date"])
-        )
+    # @classmethod
+    # def from_dict(cls: Type[AchievementType], data: Dict[str, Any]) -> AchievementType:
+    #     data = data["achievement"]
+    #     return cls(
+    #         guild=data["guild"],
+    #         image_url=f"{BASE_URL}/static/war/images/achievements/{data['guild']}.png",
+    #         date=datatime_from_string(data["date"])
+    #     )
 
 
 @dataclass
@@ -201,13 +172,13 @@ class Comment():
     message: str
     sender_name: str
 
-    @classmethod
-    def from_dict(cls: Type[CommentType], data: Dict[str, Any]) -> CommentType:
-        data = data["comment"]
-        return cls(
-            message=data["message"],
-            sender_name=data["sender"]
-        )
+    # @classmethod
+    # def from_dict(cls: Type[CommentType], data: Dict[str, Any]) -> CommentType:
+    #     data = data["comment"]
+    #     return cls(
+    #         message=data["message"],
+    #         sender_name=data["sender"]
+    #     )
 
 
 @dataclass
@@ -217,10 +188,10 @@ class Buddy():
     name: str
     id: int
 
-    @classmethod
-    def from_dict(cls: Type[BuddyType], data: Dict[str, Any]) -> BuddyType:
-        data = data["buddy"]
-        return cls(
-            name=data["name"],
-            id=int(data["id"])
-        )
+    # @classmethod
+    # def from_dict(cls: Type[BuddyType], data: Dict[str, Any]) -> BuddyType:
+    #     data = data["buddy"]
+    #     return cls(
+    #         name=data["name"],
+    #         id=int(data["id"])
+    #     )
