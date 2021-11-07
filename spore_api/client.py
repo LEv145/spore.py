@@ -31,8 +31,8 @@ class SporeClient():
         self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
 
         self._builders = Builders(
-            stats=StatsBuilder(),
-            creature=CreatureBuilder()
+            stats=StatsBuilder(self._decoder),
+            creature=CreatureBuilder(self._decoder),
         )
 
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:

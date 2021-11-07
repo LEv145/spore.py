@@ -14,9 +14,6 @@ class StatsBuilder(ABCBuilder):
     Build Stats from json
     http://www.spore.com/rest/stats
     """
-    def __init__(self) -> None:
-        self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
-
     def build(self, raw_data: str) -> Stats:
         data = self._decoder(raw_data)["stats"]
         return Stats(
@@ -32,9 +29,6 @@ class CreatureBuilder(ABCBuilder):
     Build Creature from json
     http://www.spore.com/rest/creature/500267423060
     """
-    def __init__(self) -> None:
-        self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
-
     def build(self, raw_data: str) -> Creature:
         data = self._decoder(raw_data)["creature"]
         return Creature(
@@ -69,9 +63,8 @@ class UserBuilder(ABCBuilder):
     Build Creature from json
     http://www.spore.com/rest/creature/500267423060
     """
-
-    def build(self, raw_data: dict[str, Any]) -> Creature:
-        data = raw_data["creature"]
+    def build(self, raw_data: str) -> Creature:
+        data = self._decoder(raw_data)["creature"]
         return Creature(
             cost=int(data["cost"]),
             health=float(data["health"]),
