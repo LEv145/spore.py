@@ -125,7 +125,6 @@ class Asset():
     thumbnail_url: str
     image_url: str
     author_name: str
-    author_id: Optional[int]
     create_at: "datetime"
     rating: float
     type: "AssetType"
@@ -136,8 +135,14 @@ class Asset():
 
 
 @dataclass
+class FullAsset(Asset):
+    comments: "Comments"
+    author_id: int
+
+
+@dataclass
 class Achievement():
-    guild: str
+    guid: str
     image_url: str
     date: "datetime"
 
@@ -180,6 +185,54 @@ class Buddy():
 
 
 @dataclass
-class SporecastAssets():
-    name: str
+class Assets():
     assets: List[Asset]
+
+    @property
+    def count(self) -> int:
+        return len(self.assets)
+
+
+@dataclass
+class SporecastAssets(Assets):
+    name: str
+
+@dataclass
+class Sporecasts():
+    sporecasts: List[Sporecast]
+
+    @property
+    def count(self) -> int:
+        return len(self.sporecasts)
+
+
+@dataclass
+class Achievements():
+    achievements: List[Achievement]
+
+    @property
+    def count(self) -> int:
+        return len(self.achievements)
+
+
+@dataclass
+class Comments():
+    comments: List[Comment]
+
+    @property
+    def count(self) -> int:
+        return len(self.comments)
+
+
+@dataclass
+class AssetComments(Comments):
+    name: str
+
+
+@dataclass
+class Buddies():
+    buddies: List[Buddy]
+
+    @property
+    def count(self) -> int:
+        return len(self.buddies)
