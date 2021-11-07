@@ -1,20 +1,39 @@
+from dataclasses import dataclass
 from types import TracebackType
-from typing import Any, Callable, Optional, Type, Union
+from typing import TYPE_CHECKING, Any, Callable, Optional, Type, Union
 
 import aiohttp
 import xmltodict
 
 from .constants import BASE_URL
-from .models import (
-    Stats,
-    Creature
+from .abc import ABCBuilder
+from .builders import (
+    StatsJsonBuilder,
+    CreatureJsonBuilder
 )
+
+if TYPE_CHECKING:
+    from .models import (
+        Stats,
+        Creature
+    )
+
+
+@dataclass
+class Builders():
+    stats: ABCBuilder
+    creature: ABCBuilder
 
 
 class SporeClient():
     def __init__(self) -> None:
         self._base_url = BASE_URL
         self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
+
+        self._builders = Builders(
+            stats=StatsJsonBuilder(),
+            creature=CreatureJsonBuilder()
+        )
 
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:
         self._session = session
@@ -29,13 +48,13 @@ class SporeClient():
         await self.create(session)
         return self
 
-    async def get_stats(self) -> Stats:
-        return Stats.from_dict(
+    async def get_stats(self) -> "Stats":
+        return self._builders.stats.build(
             await self.request(f"{self._base_url}/rest/stats")
         )
 
-    async def get_creature(self, creature_id: Union[int, str]) -> Creature:
-        return Creature.from_dict(
+    async def get_creature(self, creature_id: Union[int, str]) -> "Creature":
+        return self._builders.creature.build(
             await self.request(f"{self._base_url}/rest/creature/{creature_id}")
         )
 

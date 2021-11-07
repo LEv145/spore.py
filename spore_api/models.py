@@ -10,24 +10,8 @@ if TYPE_CHECKING:
     from datetime import datetime
 
 
-ModelType = TypeVar("ModelType", bound="ABCModel")
-
-
-class ABCModel(ABC):
-    @classmethod
-    @abstractmethod
-    def from_dict(cls: Type[ModelType], data: Dict[str, Any]) -> ModelType:
-        """Собираем объект из словаря"""
-
-    def to_dict(self) -> Dict[str, Any]:  # TODO
-        raise NotImplementedError
-
-    def to_json(self) -> str:  # TODO
-        raise NotImplementedError
-
-
 @dataclass
-class Stats(ABCModel):
+class Stats():
     StatsType = TypeVar("StatsType", bound="Stats")
 
     total_uploads: int
@@ -35,19 +19,9 @@ class Stats(ABCModel):
     total_users: int
     day_users: int
 
-    @classmethod
-    def from_dict(cls: Type[StatsType], data: Dict[str, Any]) -> StatsType:
-        data = data["stats"]  # FIXME: Странно
-        return cls(
-            total_uploads=int(data["totalUploads"]),
-            day_uploads=int(data["dayUploads"]),
-            total_users=int(data["totalUsers"]),
-            day_users=int(data["dayUsers"])
-        )
-
 
 @dataclass
-class Creature(ABCModel):
+class Creature():
     CreatureType = TypeVar("CreatureType", bound="Creature")
 
     cost: int
@@ -105,7 +79,7 @@ class Creature(ABCModel):
 
 
 @dataclass
-class User(ABCModel):
+class User():
     UserType = TypeVar("UserType", bound="User")
 
     id: int
@@ -125,7 +99,7 @@ class User(ABCModel):
 
 
 @dataclass
-class Sporecast(ABCModel):
+class Sporecast():
     SporecastType = TypeVar("SporecastType", bound="Sporecast")
 
     id: int
@@ -155,7 +129,7 @@ class Sporecast(ABCModel):
 
 
 @dataclass
-class Asset(ABCModel):
+class Asset():
     AssetType = TypeVar("AssetType", bound="Asset")
 
     id: int
@@ -205,7 +179,7 @@ class Asset(ABCModel):
 
 
 @dataclass
-class Achievement(ABCModel):
+class Achievement():
     AchievementType = TypeVar("AchievementType", bound="Achievement")
 
     guild: str
@@ -223,7 +197,7 @@ class Achievement(ABCModel):
 
 
 @dataclass
-class Comment(ABCModel):
+class Comment():
     CommentType = TypeVar("CommentType", bound="Comment")
 
     message: str
@@ -239,7 +213,7 @@ class Comment(ABCModel):
 
 
 @dataclass
-class Buddy(ABCModel):
+class Buddy():
     BuddyType = TypeVar("BuddyType", bound="Buddy")
 
     name: str
