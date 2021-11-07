@@ -6,7 +6,8 @@ from .enums import AssetType
 from .models import (
     Stats,
     Creature,
-    Asset
+    Asset,
+    SporecastAssets
 )
 
 
@@ -118,11 +119,41 @@ class UserAssetsBuilder(ABCBuilder):
                     if data["tags"] == "NULL" else
                     data["tags"].split(",")
                 ),
-                author_id=(
-                    None
-                    if data.get("authorid") is None else
-                    int(data["authorid"])
-                )
+                author_id=None
             )
             for raw_asser in data["asset"]
         ]
+
+
+class SporecastAssetsBuilder(ABCBuilder):
+    """
+    Build assets for sporecast
+    http://www.spore.com/rest/assets/sporecast/500190457259/2/3
+    """
+    def build(self, raw_data: str) -> SporecastAssets:
+        data = self._decoder(raw_data)["assets"]
+        return SporecastAssets(
+            name=data["name"],
+            assets=[
+                Asset(
+                    id=int(raw_asser["id"]),
+                    name=raw_asser["name"],
+                    thumbnail_url=raw_asser["thumb"],
+                    image_url=raw_asser["image_url"],
+                    author_name=raw_asser["author"],
+                    create_at=datatime_from_string(raw_asser["created"]),
+                    rating=float(data["rating"]),
+                    type=AssetType(data["type"]),
+                    subtype=data["subtype"],
+                    parent=data["parent"],
+                    description=data["description"],
+                    tags=(
+                        None
+                        if data["tags"] == "NULL" else
+                        data["tags"].split(",")
+                    ),
+                    author_id=None
+                )
+                for raw_asser in data["asset"]
+            ]
+        )
