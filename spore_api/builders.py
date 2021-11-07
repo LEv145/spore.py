@@ -1,17 +1,19 @@
-from typing import Any, Callable
+from typing import List
+from spore_api.enums import AssetType
 
-import xmltodict
+from spore_api.utils import datatime_from_string
 
 from .abc import ABCBuilder
 from .models import (
     Stats,
-    Creature
+    Creature,
+    Asset
 )
 
 
 class StatsBuilder(ABCBuilder):
     """
-    Build Stats from json
+    Build stats
     http://www.spore.com/rest/stats
     """
     def build(self, raw_data: str) -> Stats:
@@ -24,9 +26,9 @@ class StatsBuilder(ABCBuilder):
         )
 
 
-class CreatureBuilder(ABCBuilder):
+class CreatureStatsBuilder(ABCBuilder):
     """
-    Build Creature from json
+    Build creature stats
     http://www.spore.com/rest/creature/500267423060
     """
     def build(self, raw_data: str) -> Creature:
@@ -58,9 +60,9 @@ class CreatureBuilder(ABCBuilder):
         )
 
 
-class UserBuilder(ABCBuilder):
+class ProfileInfoBuilder(ABCBuilder):
     """
-    Build Creature from json
+    Build profile info
     http://www.spore.com/rest/creature/500267423060
     """
     def build(self, raw_data: str) -> Creature:
@@ -90,3 +92,38 @@ class UserBuilder(ABCBuilder):
             gesture=float(data["gesture"]),
             posture=float(data["posture"]),
         )
+
+
+class UserAssetsBuilder(ABCBuilder):
+    """
+    Build assets for user
+    http://www.spore.com/rest/assets/user/MaxisCactus/0/3
+    """
+    def build(self, raw_data: str) -> List[Asset]:
+        data = self._decoder(raw_data)["assets"]
+        return [
+            Asset(
+                id=int(raw_asser["id"]),
+                name=raw_asser["name"],
+                thumbnail_url=raw_asser["thumb"],
+                image_url=raw_asser["image_url"],
+                author_name=raw_asser["author"],
+                create_at=datatime_from_string(raw_asser["created"]),
+                rating=float(data["rating"]),
+                type=AssetType(data["type"]),
+                subtype=data["subtype"],
+                parent=data["parent"],
+                description=data["description"],
+                tags=(
+                    None
+                    if data["tags"] == "NULL" else
+                    data["tags"].split(",")
+                ),
+                author_id=(
+                    None
+                    if data.get("authorid") is None else
+                    int(data["authorid"])
+                )
+            )
+            for raw_asser in data["asset"]
+        ]
