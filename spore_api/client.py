@@ -9,7 +9,7 @@ from .constants import BASE_URL
 from .abc import ABCBuilder
 from .builders import (
     StatsBuilder,
-    CreatureBuilder
+    CreatureStatsBuilder
 )
 
 if TYPE_CHECKING:
@@ -32,7 +32,7 @@ class SporeClient():
 
         self._builders = Builders(
             stats=StatsBuilder(self._decoder),
-            creature=CreatureBuilder(self._decoder),
+            creature=CreatureStatsBuilder(self._decoder),
         )
 
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:

@@ -152,10 +152,8 @@ class Asset():
 
         data_tags: str = data["tags"]  # FIXME: Better name?
 
-        if data_tags == "NULL":
-            tags = None
-        else:
-            tags = data_tags.split(",")
+        tags = None if data["tags"] == "NULL" else data["tags"].split(",")
+
 
         return cls(
             id=int(data["id"]),
