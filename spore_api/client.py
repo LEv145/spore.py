@@ -8,8 +8,8 @@ import xmltodict
 from .constants import BASE_URL
 from .abc import ABCBuilder
 from .builders import (
-    StatsJsonBuilder,
-    CreatureJsonBuilder
+    StatsBuilder,
+    CreatureBuilder
 )
 
 if TYPE_CHECKING:
@@ -31,8 +31,8 @@ class SporeClient():
         self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
 
         self._builders = Builders(
-            stats=StatsJsonBuilder(),
-            creature=CreatureJsonBuilder()
+            stats=StatsBuilder(),
+            creature=CreatureBuilder()
         )
 
     async def create(self, session: Optional[aiohttp.ClientSession]) -> None:
@@ -58,13 +58,13 @@ class SporeClient():
             await self.request(f"{self._base_url}/rest/creature/{creature_id}")
         )
 
-    async def request(self, url: str) -> dict[str, Any]:
+    async def request(self, url: str) -> str:
         if self._session is None:
             raise ValueError("The session does not exist")
 
         async with self._session.get(url) as responce:
             responce.raise_for_status()
-            return self._decoder(await responce.text())
+            return await responce.text()
 
     async def close(self) -> None:
         if self._session is None:
