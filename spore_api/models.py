@@ -177,3 +177,9 @@ class Buddy():
     #         name=data["name"],
     #         id=int(data["id"])
     #     )
+
+
+@dataclass
+class SporecastAssets():
+    name: str
+    assets: List[Asset]
