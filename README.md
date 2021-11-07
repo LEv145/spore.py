@@ -1,5 +1,5 @@
-# SporeApi
-Spore Api
+# Spore REST API client
+Spore REST API client
 
 
 Simple example:
