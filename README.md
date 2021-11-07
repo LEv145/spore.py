@@ -1,11 +1,12 @@
-# SporeApi
-Spore Api
+# Spore REST API client
+Spore REST API client
 
 
 Simple example:
 ```py
 import asyncio
-from client import SporeClient
+
+from spore_api.client import SporeClient
 
 
 async def main() -> None:
