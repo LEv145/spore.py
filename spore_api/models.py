@@ -1,19 +1,15 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, TypeVar, Type
-from abc import ABC, abstractmethod
-from dataclasses import dataclass, asdict
+from typing import TYPE_CHECKING, List, Optional
+from dataclasses import dataclass
 
-from . import enums
-from .constants import BASE_URL
-from .utils import datatime_from_string
 
 if TYPE_CHECKING:
     from datetime import datetime
 
+    from .enums import AssetType
+
 
 @dataclass
 class Stats():
-    StatsType = TypeVar("StatsType", bound="Stats")
-
     total_uploads: int
     day_uploads: int
     total_users: int
@@ -22,8 +18,6 @@ class Stats():
 
 @dataclass
 class Creature():
-    CreatureType = TypeVar("CreatureType", bound="Creature")
-
     cost: int
     health: float
     height: float
@@ -80,8 +74,6 @@ class Creature():
 
 @dataclass
 class User():
-    UserType = TypeVar("UserType", bound="User")
-
     id: int
     image_url: str
     tagline: str
@@ -100,8 +92,6 @@ class User():
 
 @dataclass
 class Sporecast():
-    SporecastType = TypeVar("SporecastType", bound="Sporecast")
-
     id: int
     title: str
     subtitle: str
@@ -130,8 +120,6 @@ class Sporecast():
 
 @dataclass
 class Asset():
-    AssetType = TypeVar("AssetType", bound="Asset")
-
     id: int
     name: str
     thumbnail_url: str
@@ -140,7 +128,7 @@ class Asset():
     author_id: Optional[int]
     create_at: "datetime"
     rating: float
-    type: enums.AssetType
+    type: "AssetType"
     subtype: str  # TODO
     parent: str  # TODO
     description: str
@@ -149,8 +137,6 @@ class Asset():
 
 @dataclass
 class Achievement():
-    AchievementType = TypeVar("AchievementType", bound="Achievement")
-
     guild: str
     image_url: str
     date: "datetime"
@@ -167,8 +153,6 @@ class Achievement():
 
 @dataclass
 class Comment():
-    CommentType = TypeVar("CommentType", bound="Comment")
-
     message: str
     sender_name: str
 
@@ -183,8 +167,6 @@ class Comment():
 
 @dataclass
 class Buddy():
-    BuddyType = TypeVar("BuddyType", bound="Buddy")
-
     name: str
     id: int
 
