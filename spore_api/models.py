@@ -118,6 +118,7 @@ class Assets():
 class SporecastAssets(Assets):
     name: str
 
+
 @dataclass
 class Sporecasts():
     sporecasts: List[Sporecast]
