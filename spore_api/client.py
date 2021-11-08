@@ -9,7 +9,15 @@ from .constants import BASE_URL
 from .abc import ABCBuilder
 from .builders import (
     StatsBuilder,
-    CreatureStatsBuilder
+    CreatureBuilder,
+    UserBuilder,
+    AssetsBuilder,
+    SporecastsBuilder,
+    SporecastAssetsBuilder,
+    AchievementsBuilder,
+    FullAssetBuilder,
+    AssetCommentsBuilder,
+    BuddiesBuilder
 )
 
 if TYPE_CHECKING:
@@ -23,6 +31,14 @@ if TYPE_CHECKING:
 class Builders():
     stats: ABCBuilder
     creature: ABCBuilder
+    user: ABCBuilder
+    assets: ABCBuilder
+    sporecasts: ABCBuilder
+    sporecast_assets: ABCBuilder
+    achievements: ABCBuilder
+    full_asset: ABCBuilder
+    asset_comments: ABCBuilder
+    buddies: ABCBuilder
 
 
 class SporeClient():
@@ -34,7 +50,15 @@ class SporeClient():
 
         self._builders = Builders(
             stats=StatsBuilder(self._decoder),
-            creature=CreatureStatsBuilder(self._decoder),
+            creature=CreatureBuilder(self._decoder),
+            user=UserBuilder(self._decoder),
+            assets=AssetsBuilder(self._decoder),
+            sporecasts=SporecastsBuilder(self._decoder),
+            sporecast_assets=SporecastAssetsBuilder(self._decoder),
+            achievements=AchievementsBuilder(self._decoder),
+            full_asset=FullAssetBuilder(self._decoder),
+            asset_comments=AssetCommentsBuilder(self._decoder),
+            buddies=BuddiesBuilder(self._decoder)
         )
 
     async def create(self, session: Optional[aiohttp.ClientSession] = None) -> None:
