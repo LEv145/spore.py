@@ -75,7 +75,7 @@ class Asset():
     rating: float
     type: "AssetType"
     subtype: str  # TODO
-    parent: str  # TODO
+    parent_id: int  # TODO
     description: str
     tags: Optional[List[str]]
 
