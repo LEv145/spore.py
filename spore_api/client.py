@@ -42,11 +42,12 @@ class Builders():
 
 
 class SporeClient():
+    _decoder: Callable[[str], dict[str, Any]]
+    _base_url: str
+
     def __init__(self) -> None:
         self._session = None
-
-        self._base_url = BASE_URL
-        self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
+        self._init()
 
         self._builders = Builders(
             stats=StatsBuilder(self._decoder),
@@ -61,9 +62,16 @@ class SporeClient():
             buddies=BuddiesBuilder(self._decoder)
         )
 
+    def _init(self):
+        self._base_url = BASE_URL
+        self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
+
     async def create(self, session: Optional[aiohttp.ClientSession] = None) -> None:
-        if session is None:
-            self._session = session
+        self._session = (
+            aiohttp.ClientSession()
+            if session is None else
+            session
+        )
 
     async def __aenter__(
         self,
