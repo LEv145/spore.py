@@ -27,6 +27,8 @@ class Builders():
 
 class SporeClient():
     def __init__(self) -> None:
+        self._session = None
+
         self._base_url = BASE_URL
         self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
 
@@ -35,16 +37,14 @@ class SporeClient():
             creature=CreatureStatsBuilder(self._decoder),
         )
 
-    async def create(self, session: Optional[aiohttp.ClientSession]) -> None:
-        self._session = session
+    async def create(self, session: Optional[aiohttp.ClientSession] = None) -> None:
+        if session is None:
+            self._session = session
 
     async def __aenter__(
         self,
         session: Optional[aiohttp.ClientSession] = None
     ) -> "SporeClient":
-        if session is None:
-            session = aiohttp.ClientSession()
-
         await self.create(session)
         return self
 
