@@ -5,7 +5,7 @@ from spore_api.constants import BASE_URL
 
 from .utils import datatime_from_string
 from .abc import ABCBuilder
-from .enums import AssetType
+from .enums import AssetType, AssetSubtype
 from .models import (
     Achievement,
     Achievements,
@@ -122,7 +122,7 @@ class AssetsBuilder(ABCBuilder):
                     create_at=datatime_from_string(raw_asser["created"]),
                     rating=float(raw_asser["rating"]),
                     type=AssetType(raw_asser["type"]),
-                    subtype=raw_asser["subtype"],
+                    subtype=AssetSubtype(raw_asser["subtype"]),
                     parent_id=int(raw_asser["parent"]),
                     description=raw_asser["description"],
                     tags=(
@@ -189,7 +189,7 @@ class SporecastAssetsBuilder(ABCBuilder):
                     create_at=datatime_from_string(raw_asser["created"]),
                     rating=float(data["rating"]),
                     type=AssetType(data["type"]),
-                    subtype=data["subtype"],
+                    subtype=AssetSubtype(data["subtype"]),
                     parent_id=int(data["parent"]),
                     description=data["description"],
                     tags=(
@@ -246,7 +246,7 @@ class FullAssetBuilder(ABCBuilder):
             create_at=datatime_from_string(data["created"]),
             rating=float(data["rating"]),
             type=AssetType(data["type"]),
-            subtype=data["subtype"],
+            subtype=AssetSubtype(data["subtype"]),
             parent_id=int(data["parent"]),
             description=data["description"],
             tags=(

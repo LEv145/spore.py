@@ -5,7 +5,7 @@ from dataclasses import dataclass
 if TYPE_CHECKING:
     from datetime import datetime
 
-    from .enums import AssetType
+    from .enums import AssetType, AssetSubtype
 
 
 @dataclass
@@ -74,8 +74,8 @@ class Asset():
     create_at: "datetime"
     rating: float
     type: "AssetType"
-    subtype: str  # TODO
-    parent_id: int  # TODO
+    subtype: "AssetSubtype"
+    parent_id: int
     description: str
     tags: Optional[List[str]]
 
