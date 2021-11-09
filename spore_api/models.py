@@ -1,6 +1,8 @@
 from typing import TYPE_CHECKING, List, Optional
 from dataclasses import dataclass
 
+from dataclass_wizard import JSONSerializable
+
 
 if TYPE_CHECKING:
     from datetime import datetime
@@ -8,8 +10,12 @@ if TYPE_CHECKING:
     from .enums import AssetType, AssetSubtype
 
 
+class BaseModel(JSONSerializable):
+    """Base Model"""
+
+
 @dataclass
-class Stats():
+class Stats(BaseModel):
     total_uploads: int
     day_uploads: int
     total_users: int
@@ -17,7 +23,7 @@ class Stats():
 
 
 @dataclass
-class Creature():
+class Creature(BaseModel):
     cost: int
     health: float
     height: float
@@ -44,7 +50,7 @@ class Creature():
 
 
 @dataclass
-class User():
+class User(BaseModel):
     id: int
     image_url: str
     tagline: str
@@ -52,7 +58,7 @@ class User():
 
 
 @dataclass
-class Sporecast():
+class Sporecast(BaseModel):
     id: int
     title: str
     subtitle: str
@@ -65,7 +71,7 @@ class Sporecast():
 
 
 @dataclass
-class Asset():
+class Asset(BaseModel):
     id: int  # FIXME
     name: str
     thumbnail_url: str
@@ -87,26 +93,26 @@ class FullAsset(Asset):
 
 
 @dataclass
-class Achievement():
+class Achievement(BaseModel):
     guid: str
     image_url: str
     date: "datetime"
 
 
 @dataclass
-class Comment():
+class Comment(BaseModel):
     message: str
     sender_name: str
 
 
 @dataclass
-class Buddy():
+class Buddy(BaseModel):
     name: str
     id: int
 
 
 @dataclass
-class Assets():
+class Assets(BaseModel):
     assets: List[Asset]
 
     @property
@@ -120,7 +126,7 @@ class SporecastAssets(Assets):
 
 
 @dataclass
-class Sporecasts():
+class Sporecasts(BaseModel):
     sporecasts: List[Sporecast]
 
     @property
@@ -129,7 +135,7 @@ class Sporecasts():
 
 
 @dataclass
-class Achievements():
+class Achievements(BaseModel):
     achievements: List[Achievement]
 
     @property
@@ -138,7 +144,7 @@ class Achievements():
 
 
 @dataclass
-class Comments():
+class Comments(BaseModel):
     comments: List[Comment]
 
     @property
@@ -152,7 +158,7 @@ class AssetComments(Comments):
 
 
 @dataclass
-class Buddies():
+class Buddies(BaseModel):
     buddies: List[Buddy]
 
     @property
