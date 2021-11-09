@@ -26,6 +26,7 @@ from .models import (
 )
 
 
+# TODO: Typing rewrite
 class StatsBuilder(ABCBuilder):
     """
     Build stats
@@ -128,7 +129,11 @@ class AssetsBuilder(ABCBuilder):
                         if raw_asser["parent"] == "NULL" else
                         int(raw_asser["parent"])
                     ),
-                    description=raw_asser["description"],
+                    description=(
+                        None
+                        if raw_asser["description"] == "NULL" else
+                        raw_asser["description"]
+                    ),
                     tags=(
                         None
                         if raw_asser["tags"] == "NULL" else
@@ -199,7 +204,11 @@ class SporecastAssetsBuilder(ABCBuilder):
                         if raw_asser["parent"] == "NULL" else
                         int(raw_asser["parent"])
                     ),
-                    description=raw_asser["description"],
+                    description=(
+                        None
+                        if raw_asser["description"] == "NULL" else
+                        raw_asser["description"]
+                    ),
                     tags=(
                         None
                         if raw_asser["tags"] == "NULL" else
@@ -260,7 +269,11 @@ class FullAssetBuilder(ABCBuilder):
                 if data["parent"] == "NULL" else
                 int(data["parent"])
             ),
-            description=data["description"],
+            description=(
+                None
+                if data["description"] == "NULL" else
+                data["description"]
+            ),
             tags=(
                 None
                 if data["tags"] == "NULL" else
