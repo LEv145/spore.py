@@ -6,6 +6,7 @@ class AssetType(str, Enum):
     creature = "CREATURE"
     vehicle = "VEHICLE"
     adventure = "ADVENTURE"
+    ufo = "UFO"
 
 
 class ViewType(str, Enum):
@@ -20,39 +21,44 @@ class ViewType(str, Enum):
 
 class AssetSubtype(int, Enum):
     # CREATURE
-    animals = 501095725504
-    tribal = 501095388742
-    civ = 501083781321
-    space = 501095312644
-    captains = 501095829971
+    сreature   = 0x9ea3031a  # animal
+    tribal     = 0x372e2c04
+    civ        = 0xccc35c46
+    space      = 0x65672ade
+    adventurey = 0x4178b8e8  # captains
 
     # BUILDING
-    city_hall = 0
-    house = 0
-    factory = 0
-    entertainment = 0
+    city_hall     = 0x99e92f05
+    house         = 0x4e3f7777
+    factory       = 0x47c10953
+    entertainment = 0x72c49181
 
     # VEHICLE
-    military = 0
-    economic = 0
-    religious = 0
-    colony = 0
-    land = 2597835946
-    air = 0
-    sea = 0
-    spaceship = 0
+    military_land  = 0x7d433fad
+    military_water = 0x8f963dcb
+    military_air   = 0x441cd3e6
+    economic_land  = 0xf670aa43
+    economic_water = 0x2a5147a9
+    economic_air   = 0x1a4e0708
+    cultural_land  = 0x9ad7d4aa
+    cultural_water = 0x1f2a25b6
+    cultural_air   = 0x449c040f
+    colony_land    = 0xbc1041e6
+    colony_water   = 0xc15695da
+    colony_air     = 0x2090a11b
+    ufo            = 0x98e03c0d
 
     # ADVENTURE
-    attack = 0
-    collect = 0
-    defend = 0
-    explore = 0
-    puzzle = 0
-    quest = 0
-    socialize = 0
-    story = 0
-    template = 0
-    no_Genre = 0
+    attack    = 0x287adcdc
+    collect   = 0x25a6ea6e
+    defend    = 0xc34c5e14
+    explore   = 0x37fd4e0d
+    puzzle    = 0xe27ddad4
+    quest     = 0xc422519e
+    socialize = 0xfb734cd1
+    story     = 0xb4707f8f
+    template  = 0x27818fe6
+    no_genre  = 0x20790816
 
 
 
