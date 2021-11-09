@@ -66,7 +66,7 @@ class Sporecast():
 
 @dataclass
 class Asset():
-    id: int
+    id: int  # FIXME
     name: str
     thumbnail_url: str
     image_url: str
@@ -75,7 +75,7 @@ class Asset():
     rating: float
     type: "AssetType"
     subtype: "AssetSubtype"
-    parent_id: int
+    parent_id: Optional[int]
     description: str
     tags: Optional[List[str]]
 
