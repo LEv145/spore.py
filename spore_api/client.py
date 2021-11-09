@@ -72,7 +72,7 @@ class SporeClient():
 
     def _init(self):
         self._base_url = BASE_URL
-        self._decoder: Callable[[str], dict[str, Any]] = xmltodict.parse
+        self._decoder = xmltodict.parse
 
     async def create(self, session: Optional[aiohttp.ClientSession] = None) -> None:
         self._session = (
