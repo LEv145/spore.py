@@ -117,13 +117,17 @@ class AssetsBuilder(ABCBuilder):
                     id=int(raw_asser["id"]),
                     name=raw_asser["name"],
                     thumbnail_url=raw_asser["thumb"],
-                    image_url=raw_asser["image_url"],
+                    image_url=raw_asser["image"],
                     author_name=raw_asser["author"],
                     create_at=datatime_from_string(raw_asser["created"]),
                     rating=float(raw_asser["rating"]),
                     type=AssetType(raw_asser["type"]),
-                    subtype=AssetSubtype(raw_asser["subtype"]),
-                    parent_id=int(raw_asser["parent"]),
+                    subtype=AssetSubtype(int(raw_asser["subtype"], 16)),
+                    parent_id=(
+                        None
+                        if raw_asser["parent"] == "NULL" else
+                        int(raw_asser["parent"])
+                    ),
                     description=raw_asser["description"],
                     tags=(
                         None
@@ -184,18 +188,22 @@ class SporecastAssetsBuilder(ABCBuilder):
                     id=int(raw_asser["id"]),
                     name=raw_asser["name"],
                     thumbnail_url=raw_asser["thumb"],
-                    image_url=raw_asser["image_url"],
+                    image_url=raw_asser["image"],
                     author_name=raw_asser["author"],
                     create_at=datatime_from_string(raw_asser["created"]),
-                    rating=float(data["rating"]),
-                    type=AssetType(data["type"]),
-                    subtype=AssetSubtype(data["subtype"]),
-                    parent_id=int(data["parent"]),
-                    description=data["description"],
+                    rating=float(raw_asser["rating"]),
+                    type=AssetType(raw_asser["type"]),
+                    subtype=AssetSubtype(int(raw_asser["subtype"], 16)),
+                    parent_id=(
+                        None
+                        if raw_asser["parent"] == "NULL" else
+                        int(raw_asser["parent"])
+                    ),
+                    description=raw_asser["description"],
                     tags=(
                         None
-                        if data["tags"] == "NULL" else
-                        data["tags"].split(",")
+                        if raw_asser["tags"] == "NULL" else
+                        raw_asser["tags"].split(",")
                     )
                 )
                 for raw_asser in raw_assets
@@ -218,7 +226,7 @@ class AchievementsBuilder(ABCBuilder):
             achievements=[
                 Achievement(
                     guid=raw_achievement["guid"],
-                    image_url=f"{BASE_URL}/static/war/images/achievements/{raw_achievement['guild']}.png",
+                    image_url=f"{BASE_URL}/static/war/images/achievements/{raw_achievement['guid']}.png",
                     date=datatime_from_string(raw_achievement["date"])
                 )
                 for raw_achievement in raw_achievements
@@ -234,7 +242,7 @@ class FullAssetBuilder(ABCBuilder):
     http://www.spore.com/rest/asset/<AssetId>
     """
     def build(self, raw_data: str) -> FullAsset:
-        data: Dict[str, Any] = self._decoder(raw_data)["achievements"]
+        data: Dict[str, Any] = self._decoder(raw_data)["asset"]
         raw_comments: List[Dict[str, str]] = data["comments"]
 
         return FullAsset(
@@ -247,7 +255,11 @@ class FullAssetBuilder(ABCBuilder):
             rating=float(data["rating"]),
             type=AssetType(data["type"]),
             subtype=AssetSubtype(data["subtype"]),
-            parent_id=int(data["parent"]),
+            parent_id=(
+                None
+                if data["parent"] == "NULL" else
+                int(data["parent"])
+            ),
             description=data["description"],
             tags=(
                 None
@@ -276,7 +288,7 @@ class AssetCommentsBuilder(ABCBuilder):
     """
     def build(self, raw_data: str) -> AssetComments:
         data: Dict[str, Any] = self._decoder(raw_data)["comments"]
-        raw_comments: List[Dict[str, str]] = data["comments"]
+        raw_comments: List[Dict[str, str]] = data["comment"]
 
         return AssetComments(
             name=data["name"],
