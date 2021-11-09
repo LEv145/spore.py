@@ -78,7 +78,7 @@ class Asset(DataClassJsonMixin):
     type: "AssetType"
     subtype: "AssetSubtype"
     parent_id: Optional[int]
-    description: str
+    description: Optional[str]
     tags: Optional[List[str]]
 
 
