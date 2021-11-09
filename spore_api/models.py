@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, List, Optional
 from dataclasses import dataclass
 
-from dataclass_wizard import JSONSerializable
+from dataclasses_json import DataClassJsonMixin
 
 
 if TYPE_CHECKING:
@@ -10,12 +10,8 @@ if TYPE_CHECKING:
     from .enums import AssetType, AssetSubtype
 
 
-class BaseModel(JSONSerializable):
-    """Base Model"""
-
-
 @dataclass
-class Stats(BaseModel):
+class Stats(DataClassJsonMixin):
     total_uploads: int
     day_uploads: int
     total_users: int
@@ -23,7 +19,7 @@ class Stats(BaseModel):
 
 
 @dataclass
-class Creature(BaseModel):
+class Creature(DataClassJsonMixin):
     cost: int
     health: float
     height: float
@@ -50,7 +46,7 @@ class Creature(BaseModel):
 
 
 @dataclass
-class User(BaseModel):
+class User(DataClassJsonMixin):
     id: int
     image_url: str
     tagline: str
@@ -58,7 +54,7 @@ class User(BaseModel):
 
 
 @dataclass
-class Sporecast(BaseModel):
+class Sporecast(DataClassJsonMixin):
     id: int
     title: str
     subtitle: str
@@ -71,7 +67,7 @@ class Sporecast(BaseModel):
 
 
 @dataclass
-class Asset(BaseModel):
+class Asset(DataClassJsonMixin):
     id: int  # FIXME
     name: str
     thumbnail_url: str
@@ -87,32 +83,32 @@ class Asset(BaseModel):
 
 
 @dataclass
-class FullAsset(Asset):
+class FullAsset(Asset, DataClassJsonMixin):
     comments: "Comments"
     author_id: int
 
 
 @dataclass
-class Achievement(BaseModel):
+class Achievement(DataClassJsonMixin):
     guid: str
     image_url: str
     date: "datetime"
 
 
 @dataclass
-class Comment(BaseModel):
+class Comment(DataClassJsonMixin):
     message: str
     sender_name: str
 
 
 @dataclass
-class Buddy(BaseModel):
+class Buddy(DataClassJsonMixin):
     name: str
     id: int
 
 
 @dataclass
-class Assets(BaseModel):
+class Assets(DataClassJsonMixin):
     assets: List[Asset]
 
     @property
@@ -121,12 +117,12 @@ class Assets(BaseModel):
 
 
 @dataclass
-class SporecastAssets(Assets):
+class SporecastAssets(Assets, DataClassJsonMixin):
     name: str
 
 
 @dataclass
-class Sporecasts(BaseModel):
+class Sporecasts(DataClassJsonMixin):
     sporecasts: List[Sporecast]
 
     @property
@@ -135,7 +131,7 @@ class Sporecasts(BaseModel):
 
 
 @dataclass
-class Achievements(BaseModel):
+class Achievements(DataClassJsonMixin):
     achievements: List[Achievement]
 
     @property
@@ -144,7 +140,7 @@ class Achievements(BaseModel):
 
 
 @dataclass
-class Comments(BaseModel):
+class Comments(DataClassJsonMixin):
     comments: List[Comment]
 
     @property
@@ -153,12 +149,12 @@ class Comments(BaseModel):
 
 
 @dataclass
-class AssetComments(Comments):
+class AssetComments(Comments, DataClassJsonMixin):
     name: str
 
 
 @dataclass
-class Buddies(BaseModel):
+class Buddies(DataClassJsonMixin):
     buddies: List[Buddy]
 
     @property
