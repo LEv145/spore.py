@@ -218,9 +218,9 @@ class SporeClient():
         if self._session is None:
             raise ValueError("The session does not exist")
 
-        async with self._session.get(url) as responce:
-            responce.raise_for_status()
-            return await responce.text()
+        async with self._session.get(url) as response:
+            response.raise_for_status()
+            return await response.text()
 
     async def close(self) -> None:
         if self._session is None:
