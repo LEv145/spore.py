@@ -2,7 +2,13 @@
 * Python 3.7+
 
 
-Simple example:
+**Install:**
+```py
+pip install spore.py
+```
+
+
+**Simple example:**
 ```py
 import asyncio
 
@@ -17,8 +23,7 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-
-Client methods:
+**Client methods:**
 
 ```py
 get_stats() -> Stats
