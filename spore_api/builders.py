@@ -22,7 +22,7 @@ from .models import (
     Asset,
     SporecastAssets,
     Comment,
-    User
+    User,
 )
 
 
@@ -54,6 +54,7 @@ class CreatureBuilder(ABCBuilder):
         data: Dict[str, str] = self._decoder(raw_data)["creature"]
 
         return Creature(
+            asset_id=int(data["input"]),
             cost=int(data["cost"]),
             health=float(data["health"]),
             height=float(data["height"]),
@@ -92,6 +93,7 @@ class UserBuilder(ABCBuilder):
 
         return User(
             id=int(data["id"]),
+            name=data["input"],
             image_url=data["image"],
             tagline=data["tagline"],
             create_at=datatime_from_string(data["creation"])
@@ -158,6 +160,7 @@ class SporecastsBuilder(ABCBuilder):
         raw_sporecast: List[Dict[str, str]] = data["sporecast"]
 
         return Sporecasts(
+            username=data["input"],
             sporecasts=[
                 Sporecast(
                     id=int(raw_sporecast["id"]),
@@ -187,6 +190,7 @@ class SporecastAssetsBuilder(ABCBuilder):
         raw_assets: List[Dict[str, str]] = data["asset"]
 
         return SporecastAssets(
+            id=int(data["input"]),
             name=data["name"],
             assets=[
                 Asset(
@@ -232,6 +236,7 @@ class AchievementsBuilder(ABCBuilder):
         raw_achievements: List[Dict[str, str]] = data["achievement"]
 
         return Achievements(
+            username=data["input"],
             achievements=[
                 Achievement(
                     guid=raw_achievement["guid"],
@@ -252,18 +257,16 @@ class FullAssetBuilder(ABCBuilder):
     """
     def build(self, raw_data: str) -> FullAsset:
         data: Dict[str, Any] = self._decoder(raw_data)["asset"]
-        raw_comments: List[Dict[str, str]] = data["comments"]
+        raw_comments: List[Dict[str, str]] = data["comments"]["comment"]
 
         return FullAsset(
-            id=int(data["id"]),
+            id=int(data["input"]),
             name=data["name"],
-            thumbnail_url=data["thumb"],
-            image_url=data["image_url"],
             author_name=data["author"],
             create_at=datatime_from_string(data["created"]),
             rating=float(data["rating"]),
             type=AssetType(data["type"]),
-            subtype=AssetSubtype(data["subtype"]),
+            subtype=AssetSubtype(int(data["subtype"], 16)),
             parent_id=(
                 None
                 if data["parent"] == "NULL" else
@@ -304,6 +307,7 @@ class AssetCommentsBuilder(ABCBuilder):
         raw_comments: List[Dict[str, str]] = data["comment"]
 
         return AssetComments(
+            id=int(data["input"]),
             name=data["name"],
             comments=[
                 Comment(

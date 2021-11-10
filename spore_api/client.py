@@ -31,7 +31,7 @@ if TYPE_CHECKING:
         Assets,
         Buddies,
         SporecastAssets,
-        FullAsset
+        FullAsset,
     )
 
 
@@ -95,10 +95,10 @@ class SporeClient():
 
     async def get_creature(
         self,
-        creature_id: Union[int, str]
+        asset_id: Union[int, str]
     ) -> "Creature":
         return self._builders.creature.build(
-            await self.request(f"{self._base_url}/rest/creature/{creature_id}")
+            await self.request(f"{self._base_url}/rest/creature/{asset_id}")
         )
 
     async def get_user_info(

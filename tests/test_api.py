@@ -15,6 +15,7 @@ from spore_api.models import (
     User
 )
 
+
 class TestAPIModel(unittest.IsolatedAsyncioTestCase):
 
     async def test_stats(self):
