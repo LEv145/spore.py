@@ -1,5 +1,5 @@
-# Spore REST API client
-Spore REST API client
+# Spore REST API asyncio client
+* Python 3.7+
 
 
 Simple example:
@@ -17,6 +17,20 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-# TODO:
- * Общий абстрактный класс для клиентов + ассихронный клиент
- * Классы перевода из сырой информации в датаклассы, вместо `from_dict`, тк метод `from_dict` должен быть обратимый
+
+Client methods:
+
+```py
+get_stats() -> Stats
+get_creature(asset_id: int | str) -> Creature
+get_user_info(username: str) -> User
+get_user_assets(username: str, start_index: int | str, length: int | str) -> Assets
+get_user_sporecasts(username: str) -> Sporecasts:
+get_sporecast_assets(sporecast_id: int | str, start_index: int | str, length: int | str) -> SporecastAssets
+get_user_achievements(username: str, start_index: int | str, length: int | str) -> Achievements
+get_asset_info(asset_id: int | str) -> FullAsset
+get_asset_comments(asset_id: int | str, start_index: int | str, length: int | str) -> AssetComments
+get_user_buddies(username: str, start_index: int | str, length: int | str) -> Buddies
+get_user_subscribers(username: str, start_index: int | str, length: Uint | str) -> Buddies
+assets_search(view_type: ViewType, start_index: int | str, length: int | str, asset_type: Optional[AssetType] = None) -> Assets
+```

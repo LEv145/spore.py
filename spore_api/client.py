@@ -32,6 +32,7 @@ if TYPE_CHECKING:
         Buddies,
         SporecastAssets,
         FullAsset,
+        Sporecasts
     )
 
 
@@ -124,7 +125,7 @@ class SporeClient():
     async def get_user_sporecasts(
         self,
         username: str
-    ):
+    ) -> "Sporecasts":
         return self._builders.sporecasts.build(
             await self.request(f"{self._base_url}/rest/sporecasts/{username}")
         )
