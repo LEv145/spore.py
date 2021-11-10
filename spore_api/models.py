@@ -20,6 +20,8 @@ class Stats(DataClassJsonMixin):
 
 @dataclass
 class Creature(DataClassJsonMixin):
+    asset_id: int
+
     cost: int
     health: float
     height: float
@@ -48,6 +50,7 @@ class Creature(DataClassJsonMixin):
 @dataclass
 class User(DataClassJsonMixin):
     id: int
+    name: str
     image_url: str
     tagline: str
     create_at: "datetime"
@@ -68,10 +71,8 @@ class Sporecast(DataClassJsonMixin):
 
 @dataclass
 class Asset(DataClassJsonMixin):
-    id: int  # FIXME
+    id: int
     name: str
-    thumbnail_url: str
-    image_url: str
     author_name: str
     create_at: "datetime"
     rating: float
@@ -80,10 +81,22 @@ class Asset(DataClassJsonMixin):
     parent_id: Optional[int]
     description: Optional[str]
     tags: Optional[List[str]]
+    thumbnail_url: str
+    image_url: str
 
 
 @dataclass
-class FullAsset(Asset, DataClassJsonMixin):
+class FullAsset(DataClassJsonMixin):
+    id: int
+    name: str
+    author_name: str
+    create_at: "datetime"
+    rating: float
+    type: "AssetType"
+    subtype: "AssetSubtype"
+    parent_id: Optional[int]
+    description: Optional[str]
+    tags: Optional[List[str]]
     comments: "Comments"
     author_id: int
 
@@ -103,8 +116,8 @@ class Comment(DataClassJsonMixin):
 
 @dataclass
 class Buddy(DataClassJsonMixin):
-    name: str
     id: int
+    name: str
 
 
 @dataclass
@@ -117,12 +130,14 @@ class Assets(DataClassJsonMixin):
 
 
 @dataclass
-class SporecastAssets(Assets, DataClassJsonMixin):
+class SporecastAssets(Assets):
+    id: int
     name: str
 
 
 @dataclass
 class Sporecasts(DataClassJsonMixin):
+    username: str
     sporecasts: List[Sporecast]
 
     @property
@@ -132,6 +147,7 @@ class Sporecasts(DataClassJsonMixin):
 
 @dataclass
 class Achievements(DataClassJsonMixin):
+    username: str
     achievements: List[Achievement]
 
     @property
@@ -149,7 +165,8 @@ class Comments(DataClassJsonMixin):
 
 
 @dataclass
-class AssetComments(Comments, DataClassJsonMixin):
+class AssetComments(Comments):
+    id: int
     name: str
 
 
