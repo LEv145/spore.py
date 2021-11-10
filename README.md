@@ -31,6 +31,6 @@ get_user_achievements(username: str, start_index: int | str, length: int | str) 
 get_asset_info(asset_id: int | str) -> FullAsset
 get_asset_comments(asset_id: int | str, start_index: int | str, length: int | str) -> AssetComments
 get_user_buddies(username: str, start_index: int | str, length: int | str) -> Buddies
-get_user_subscribers(username: str, start_index: int | str, length: Uint | str) -> Buddies
+get_user_subscribers(username: str, start_index: int | str, length: int | str) -> Buddies
 assets_search(view_type: ViewType, start_index: int | str, length: int | str, asset_type: AssetType | None = None) -> Assets
 ```
