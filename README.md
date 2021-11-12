@@ -65,7 +65,8 @@ assets_search(view_type: ViewType, start_index: int | str, length: int | str, as
 
 
 # TODO:
-* Update readme
-* Error handler
-* test_api.py Mock apps
-* Bin for `spore`
+[ ] Update readme
+[ ] Error handler
+[ ] Mock apps for tests
+[ ] Bin for `spore`
+[ ] Sync Client?
