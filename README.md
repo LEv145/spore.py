@@ -8,11 +8,11 @@ pip install spore.py
 ```
 
 
-**Simple example:**
+**Simple examples:**
 ```py
 import asyncio
 
-from spore_api.client import SporeClient
+from spore_api import SporeClient
 
 
 async def main() -> None:
@@ -21,6 +21,29 @@ async def main() -> None:
 
 
 asyncio.run(main())
+```
+
+In sync code:
+```py
+import asyncio
+
+from spore_api import SporeClient
+
+
+async def client_logic() -> str:
+    async with SporeClient() as client:
+        result = await client.get_creature(500267423060)
+
+    return result.to_json()
+
+
+def main() -> None:
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(client_logic())
+    print(f"Json result: {result!r}")
+
+
+main()
 ```
 
 **Client methods:**
@@ -39,3 +62,10 @@ get_user_buddies(username: str, start_index: int | str, length: int | str) -> Bu
 get_user_subscribers(username: str, start_index: int | str, length: int | str) -> Buddies
 assets_search(view_type: ViewType, start_index: int | str, length: int | str, asset_type: AssetType | None = None) -> Assets
 ```
+
+
+# TODO:
+* Update readme
+* Error handler
+* test_api.py Mock apps
+* Bin for `spore`

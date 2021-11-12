@@ -93,7 +93,7 @@ class TestAPIModel(unittest.IsolatedAsyncioTestCase):
             result = await client.assets_search(ViewType.cute_and_creepy, 0, 8)
             self.assertIsInstance(result, Assets)
 
-
+            # With AssetType
             result = await client.assets_search(ViewType.featured, 0, 5, AssetType.ufo)
             self.assertIsInstance(result, Assets)
 

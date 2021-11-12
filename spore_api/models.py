@@ -4,11 +4,7 @@ from dataclasses import dataclass
 
 from dataclasses_json import DataClassJsonMixin
 
-
-if TYPE_CHECKING:
-    from datetime import datetime
-
-    from .enums import AssetType, AssetSubtype
+from .enums import AssetType, AssetSubtype
 
 
 @dataclass

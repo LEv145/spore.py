@@ -22,5 +22,9 @@ setup(
     project_urls={
         "Git": "https://github.com/LEv145/spore.py",
         "Issue tracker": "https://github.com/LEv145/spore.py/issues",
-    }
+    },
+    entry_points="""
+    [console_scripts]
+    spore=spore_api.scripts.spore_cli:cli
+    """
 )

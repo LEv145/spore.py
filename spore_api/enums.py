@@ -59,6 +59,3 @@ class AssetSubtype(int, Enum):
     story     = 0xb4707f8f
     template  = 0x27818fe6
     no_genre  = 0x20790816
-
-
-
