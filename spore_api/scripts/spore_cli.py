@@ -1,4 +1,5 @@
-#!./venv/bin/python3
+#!/usr/bin/env python
+
 from typing import Optional
 import asyncclick as click
 
