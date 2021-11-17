@@ -4,7 +4,6 @@ from typing import Any, Dict, List
 from spore_api.constants import BASE_URL
 
 from .utils import datatime_from_string
-from .abc import ABCBuilder
 from .enums import AssetType, AssetSubtype
 from .models import (
     Achievement,
@@ -26,8 +25,7 @@ from .models import (
 )
 
 
-# TODO: Typing rewrite
-class StatsBuilder(ABCBuilder):
+class StatsJsonBuilder():
     """
     Build stats
     http://www.spore.com/rest/stats
@@ -44,7 +42,7 @@ class StatsBuilder(ABCBuilder):
         )
 
 
-class CreatureBuilder(ABCBuilder):
+class CreatureJsonBuilder():
     """
     [Pages]
 
@@ -83,7 +81,7 @@ class CreatureBuilder(ABCBuilder):
         )
 
 
-class UserBuilder(ABCBuilder):
+class UserJsonBuilder():
     """
     [Pages]
 
@@ -103,7 +101,7 @@ class UserBuilder(ABCBuilder):
         )
 
 
-class AssetsBuilder(ABCBuilder):
+class AssetsJsonBuilder():
     """
     [Pages]
 
@@ -151,7 +149,7 @@ class AssetsBuilder(ABCBuilder):
         )
 
 
-class SporecastsBuilder(ABCBuilder):
+class SporecastsJsonBuilder():
     """
     [Pages]
 
@@ -182,7 +180,7 @@ class SporecastsBuilder(ABCBuilder):
         )
 
 
-class SporecastAssetsBuilder(ABCBuilder):
+class SporecastAssetsJsonBuilder():
     """
     [Pages]
 
@@ -229,7 +227,7 @@ class SporecastAssetsBuilder(ABCBuilder):
         )
 
 
-class AchievementsBuilder(ABCBuilder):
+class AchievementsJsonBuilder():
     """
     [Pages]
 
@@ -254,7 +252,7 @@ class AchievementsBuilder(ABCBuilder):
         )
 
 
-class FullAssetBuilder(ABCBuilder):
+class FullAssetJsonBuilder():
     """
     [Pages]
 
@@ -302,7 +300,7 @@ class FullAssetBuilder(ABCBuilder):
         )
 
 
-class AssetCommentsBuilder(ABCBuilder):
+class AssetCommentsJsonBuilder():
     """
     [Pages]
 
@@ -327,7 +325,7 @@ class AssetCommentsBuilder(ABCBuilder):
         )
 
 
-class BuddiesBuilder(ABCBuilder):
+class BuddiesJsonBuilder():
     """
     [Pages]
 

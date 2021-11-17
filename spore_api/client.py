@@ -9,16 +9,16 @@ from .errors import SporeApiStatusError
 from .constants import BASE_URL
 from .enums import AssetType, ViewType
 from .builders import (
-    StatsBuilder,
-    CreatureBuilder,
-    UserBuilder,
-    AssetsBuilder,
-    SporecastsBuilder,
-    SporecastAssetsBuilder,
-    AchievementsBuilder,
-    FullAssetBuilder,
-    AssetCommentsBuilder,
-    BuddiesBuilder
+    StatsJsonBuilder,
+    CreatureJsonBuilder,
+    UserJsonBuilder,
+    AssetsJsonBuilder,
+    SporecastsJsonBuilder,
+    SporecastAssetsJsonBuilder,
+    AchievementsJsonBuilder,
+    FullAssetJsonBuilder,
+    AssetCommentsJsonBuilder,
+    BuddiesJsonBuilder
 )
 
 if TYPE_CHECKING:
@@ -63,7 +63,7 @@ class SporeClient():
         return self
 
     async def get_stats(self) -> "Stats":
-        return StatsBuilder.build(
+        return StatsJsonBuilder.build(
             await self.get_data_from_url(f"{self._base_url}/rest/stats")
         )
 
@@ -71,7 +71,7 @@ class SporeClient():
         self,
         asset_id: Union[int, str]
     ) -> "Creature":
-        return CreatureBuilder.build(
+        return CreatureJsonBuilder.build(
             await self.get_data_from_url(f"{self._base_url}/rest/creature/{asset_id}")
         )
 
@@ -79,7 +79,7 @@ class SporeClient():
         self,
         username: str
     ) -> "User":
-        return UserBuilder.build(
+        return UserJsonBuilder.build(
             await self.get_data_from_url(f"{self._base_url}/rest/user/{username}")
         )
 
@@ -89,7 +89,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Assets":
-        return AssetsBuilder.build(
+        return AssetsJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/assets/user/{username}/{start_index}/{length}"
             )
@@ -99,7 +99,7 @@ class SporeClient():
         self,
         username: str
     ) -> "Sporecasts":
-        return SporecastsBuilder.build(
+        return SporecastsJsonBuilder.build(
             await self.get_data_from_url(f"{self._base_url}/rest/sporecasts/{username}")
         )
 
@@ -109,7 +109,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "SporecastAssets":
-        return SporecastAssetsBuilder.build(
+        return SporecastAssetsJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/assets/sporecast/{sporecast_id}/{start_index}/{length}"
             )
@@ -121,7 +121,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Achievements":
-        return AchievementsBuilder.build(
+        return AchievementsJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/achievements/{username}/{start_index}/{length}"
             )
@@ -131,7 +131,7 @@ class SporeClient():
         self,
         asset_id: Union[int, str]
     ) -> "FullAsset":
-        return FullAssetBuilder.build(
+        return FullAssetJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/asset/{asset_id}"
             )
@@ -143,7 +143,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "AssetComments":
-        return AssetCommentsBuilder.build(
+        return AssetCommentsJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/comments/{asset_id}/{start_index}/{length}"
             )
@@ -155,7 +155,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Buddies":
-        return BuddiesBuilder.build(
+        return BuddiesJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/users/buddies/{username}/{start_index}/{length}"
             )
@@ -167,7 +167,7 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Buddies":
-        return BuddiesBuilder.build(
+        return BuddiesJsonBuilder.build(
             await self.get_data_from_url(
                 f"{self._base_url}/rest/users/subscribers/{username}/{start_index}/{length}"
             )
@@ -185,7 +185,7 @@ class SporeClient():
         else:
             url = f"{self._base_url}/rest/assets/search/{view_type}/{start_index}/{length}/{asset_type}"
 
-        return AssetsBuilder.build(
+        return AssetsJsonBuilder.build(
             await self.get_data_from_url(url)
         )
 
