@@ -4,7 +4,7 @@
 
 **Install:**
 ```py
-pip install spore.py
+pip install git+https://github.com/LEv145/spore.py
 ```
 
 
