@@ -1,4 +1,4 @@
-from .client import *
+from .client import SporeClient
 from .abc import *
 from .builders import *
 from .constants import *
