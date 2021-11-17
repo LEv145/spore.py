@@ -63,10 +63,3 @@ get_user_subscribers(username: str, start_index: int | str, length: int | str) -
 assets_search(view_type: ViewType, start_index: int | str, length: int | str, asset_type: AssetType | None = None) -> Assets
 ```
 
-
-# TODO:
-- [ ] Update readme
-- [ ] Error handler
-- [ ] Mock apps for tests
-- [ ] Bin for `spore`
-- [ ] Sync Client?
