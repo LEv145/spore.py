@@ -1,9 +1,11 @@
-from dataclasses import dataclass
+import re
 from types import TracebackType
 from typing import TYPE_CHECKING, Any, Callable, Optional, Type, Union
 
 import aiohttp
 import xmltodict
+
+from spore_api.errors import SporeApiStatusError
 
 
 from .constants import BASE_URL
@@ -36,20 +38,6 @@ if TYPE_CHECKING:
     )
 
 
-@dataclass
-class Builders():  # TODO: Delete
-    stats: StatsBuilder
-    creature: CreatureBuilder
-    user: UserBuilder
-    assets: AssetsBuilder
-    sporecasts: SporecastsBuilder
-    sporecast_assets: SporecastAssetsBuilder
-    achievements: AchievementsBuilder
-    full_asset: FullAssetBuilder
-    asset_comments: AssetCommentsBuilder
-    buddies: BuddiesBuilder
-
-
 class SporeClient():
     _decoder: Callable[[str], dict[str, Any]]
     _base_url: str
@@ -57,19 +45,6 @@ class SporeClient():
     def __init__(self) -> None:
         self._session = None
         self._init()
-
-        self._builders = Builders(
-            stats=StatsBuilder(self._decoder),
-            creature=CreatureBuilder(self._decoder),
-            user=UserBuilder(self._decoder),
-            assets=AssetsBuilder(self._decoder),
-            sporecasts=SporecastsBuilder(self._decoder),
-            sporecast_assets=SporecastAssetsBuilder(self._decoder),
-            achievements=AchievementsBuilder(self._decoder),
-            full_asset=FullAssetBuilder(self._decoder),
-            asset_comments=AssetCommentsBuilder(self._decoder),
-            buddies=BuddiesBuilder(self._decoder)
-        )  # TODO: Delete
 
     def _init(self):
         self._base_url = BASE_URL
@@ -90,24 +65,24 @@ class SporeClient():
         return self
 
     async def get_stats(self) -> "Stats":
-        return self._builders.stats.build(
-            await self.request(f"{self._base_url}/rest/stats")
+        return StatsBuilder.build(
+            await self.get_data_from_url(f"{self._base_url}/rest/stats")
         )
 
     async def get_creature(
         self,
         asset_id: Union[int, str]
     ) -> "Creature":
-        return self._builders.creature.build(
-            await self.request(f"{self._base_url}/rest/creature/{asset_id}")
+        return CreatureBuilder.build(
+            await self.get_data_from_url(f"{self._base_url}/rest/creature/{asset_id}")
         )
 
     async def get_user_info(
         self,
         username: str
     ) -> "User":
-        return self._builders.user.build(
-            await self.request(f"{self._base_url}/rest/user/{username}")
+        return UserBuilder.build(
+            await self.get_data_from_url(f"{self._base_url}/rest/user/{username}")
         )
 
     async def get_user_assets(
@@ -116,8 +91,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Assets":
-        return self._builders.assets.build(
-            await self.request(
+        return AssetsBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/assets/user/{username}/{start_index}/{length}"
             )
         )
@@ -126,8 +101,8 @@ class SporeClient():
         self,
         username: str
     ) -> "Sporecasts":
-        return self._builders.sporecasts.build(
-            await self.request(f"{self._base_url}/rest/sporecasts/{username}")
+        return SporecastsBuilder.build(
+            await self.get_data_from_url(f"{self._base_url}/rest/sporecasts/{username}")
         )
 
     async def get_sporecast_assets(
@@ -136,8 +111,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "SporecastAssets":
-        return self._builders.sporecast_assets.build(
-            await self.request(
+        return SporecastAssetsBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/assets/sporecast/{sporecast_id}/{start_index}/{length}"
             )
         )
@@ -148,8 +123,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Achievements":
-        return self._builders.achievements.build(
-            await self.request(
+        return AchievementsBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/achievements/{username}/{start_index}/{length}"
             )
         )
@@ -158,8 +133,8 @@ class SporeClient():
         self,
         asset_id: Union[int, str]
     ) -> "FullAsset":
-        return self._builders.full_asset.build(
-            await self.request(
+        return FullAssetBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/asset/{asset_id}"
             )
         )
@@ -170,8 +145,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "AssetComments":
-        return self._builders.asset_comments.build(
-            await self.request(
+        return AssetCommentsBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/comments/{asset_id}/{start_index}/{length}"
             )
         )
@@ -182,8 +157,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Buddies":
-        return self._builders.buddies.build(
-            await self.request(
+        return BuddiesBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/users/buddies/{username}/{start_index}/{length}"
             )
         )
@@ -194,8 +169,8 @@ class SporeClient():
         start_index: Union[int, str],
         length: Union[int, str]
     ) -> "Buddies":
-        return self._builders.buddies.build(
-            await self.request(
+        return BuddiesBuilder.build(
+            await self.get_data_from_url(
                 f"{self._base_url}/rest/users/subscribers/{username}/{start_index}/{length}"
             )
         )
@@ -212,9 +187,26 @@ class SporeClient():
         else:
             url = f"{self._base_url}/rest/assets/search/{view_type}/{start_index}/{length}/{asset_type}"
 
-        return self._builders.assets.build(await self.request(url))
+        return AssetsBuilder.build(
+            await self.get_data_from_url(url)
+        )
 
-    async def request(self, url: str) -> str:
+    async def get_data_from_url(self, url: str):
+        text = await self.get_response_text(url)
+        return await self.parse_response_text(text)
+
+    async def parse_response_text(self, text: str):
+        api_status_parse = re.search(r"<status>(\d+)</status>", text)
+        if api_status_parse is not None:
+            api_status = int(api_status_parse.group(1))
+
+            if api_status != 1:
+                raise SporeApiStatusError(api_status)
+
+        raw_data = self._decoder(text)
+        return raw_data
+
+    async def get_response_text(self, url: str) -> str:
         if self._session is None:
             raise ValueError("The session does not exist")
 

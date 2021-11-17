@@ -32,8 +32,9 @@ class StatsBuilder(ABCBuilder):
     Build stats
     http://www.spore.com/rest/stats
     """
-    def build(self, raw_data: str) -> Stats:
-        data: Dict[str, str] = self._decoder(raw_data)["stats"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Stats:
+        data: Dict[str, str] = raw_data["stats"]
 
         return Stats(
             total_uploads=int(data["totalUploads"]),
@@ -50,8 +51,9 @@ class CreatureBuilder(ABCBuilder):
     Creature stats:
     http://www.spore.com/rest/creature/<CreatureAssetId>
     """
-    def build(self, raw_data: str) -> Creature:
-        data: Dict[str, str] = self._decoder(raw_data)["creature"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Creature:
+        data: Dict[str, str] = raw_data["creature"]
 
         return Creature(
             asset_id=int(data["input"]),
@@ -88,8 +90,9 @@ class UserBuilder(ABCBuilder):
     Profile Info:
     http://www.spore.com/rest/user/<Username>
     """
-    def build(self, raw_data: str) -> User:
-        data: Dict[str, str] = self._decoder(raw_data)["user"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> User:
+        data: Dict[str, str] = raw_data["user"]
 
         return User(
             id=int(data["id"]),
@@ -110,8 +113,9 @@ class AssetsBuilder(ABCBuilder):
     Special Searches:
     http://www.spore.com/rest/assets/search/<ViewType>/<StartIndex>/<Length>
     """
-    def build(self, raw_data: str) -> Assets:
-        data: Dict[str, Any] = self._decoder(raw_data)["assets"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Assets:
+        data: Dict[str, Any] = raw_data["assets"]
         raw_assets: List[Dict[str, str]] = data["asset"]
 
         return Assets(
@@ -154,9 +158,9 @@ class SporecastsBuilder(ABCBuilder):
     Sporecasts for user:
     http://www.spore.com/rest/sporecasts/<Username>
     """
-
-    def build(self, raw_data: str) -> Sporecasts:
-        data: Dict[str, Any] = self._decoder(raw_data)["sporecasts"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Sporecasts:
+        data: Dict[str, Any] = raw_data["sporecasts"]
         raw_sporecast: List[Dict[str, str]] = data["sporecast"]
 
         return Sporecasts(
@@ -185,8 +189,9 @@ class SporecastAssetsBuilder(ABCBuilder):
     Assets for sporecast:
     http://www.spore.com/rest/assets/sporecast/<Sporecast Id>/<StartIndex>/<Length>
     """
-    def build(self, raw_data: str) -> SporecastAssets:
-        data: Dict[str, Any] = self._decoder(raw_data)["assets"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> SporecastAssets:
+        data: Dict[str, Any] = raw_data["assets"]
         raw_assets: List[Dict[str, str]] = data["asset"]
 
         return SporecastAssets(
@@ -231,8 +236,9 @@ class AchievementsBuilder(ABCBuilder):
     Achievements for user:
     http://www.spore.com/rest/assets/achievements/<Username>/<StartIndex>/<Length>
     """
-    def build(self, raw_data: str) -> Achievements:
-        data: Dict[str, Any] = self._decoder(raw_data)["achievements"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Achievements:
+        data: Dict[str, Any] = raw_data["achievements"]
         raw_achievements: List[Dict[str, str]] = data["achievement"]
 
         return Achievements(
@@ -255,8 +261,9 @@ class FullAssetBuilder(ABCBuilder):
     Info about an asset:
     http://www.spore.com/rest/asset/<AssetId>
     """
-    def build(self, raw_data: str) -> FullAsset:
-        data: Dict[str, Any] = self._decoder(raw_data)["asset"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> FullAsset:
+        data: Dict[str, Any] = raw_data["asset"]
         raw_comments: List[Dict[str, str]] = data["comments"]["comment"]
 
         return FullAsset(
@@ -302,8 +309,9 @@ class AssetCommentsBuilder(ABCBuilder):
     Comments for an asset:
     http://www.spore.com/rest/comments/<AssetId>/<StartIndex>/<Length>
     """
-    def build(self, raw_data: str) -> AssetComments:
-        data: Dict[str, Any] = self._decoder(raw_data)["comments"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> AssetComments:
+        data: Dict[str, Any] = raw_data["comments"]
         raw_comments: List[Dict[str, str]] = data["comment"]
 
         return AssetComments(
@@ -329,8 +337,9 @@ class BuddiesBuilder(ABCBuilder):
     Who has added a user as a buddy:
     http://www.spore.com/rest/users/subscribers/<Username>/<StartIndex>/<Length>
     """
-    def build(self, raw_data: str) -> Buddies:
-        data: Dict[str, Any] = self._decoder(raw_data)["users"]
+    @staticmethod
+    def build(raw_data: Dict[str, Any]) -> Buddies:
+        data: Dict[str, Any] = raw_data["users"]
         raw_buddy: List[Dict[str, str]] = data["buddy"]
 
         return Buddies(
