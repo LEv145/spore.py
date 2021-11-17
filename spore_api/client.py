@@ -5,9 +5,7 @@ from typing import TYPE_CHECKING, Any, Callable, Optional, Type, Union
 import aiohttp
 import xmltodict
 
-from spore_api.errors import SporeApiStatusError
-
-
+from .errors import SporeApiStatusError
 from .constants import BASE_URL
 from .enums import AssetType, ViewType
 from .builders import (
