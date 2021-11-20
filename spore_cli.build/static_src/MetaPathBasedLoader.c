@@ -1,1 +1,0 @@
-/home/lev145/.local/lib/python3/site-packages/nuitka/build/static_src/MetaPathBasedLoader.c
