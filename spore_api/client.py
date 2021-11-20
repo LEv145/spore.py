@@ -1,6 +1,14 @@
 import re
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, Callable, Optional, Type, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Optional,
+    Type,
+    Union,
+    Dict
+)
 
 import aiohttp
 import xmltodict
@@ -37,7 +45,7 @@ if TYPE_CHECKING:
 
 
 class SporeClient():
-    _decoder: Callable[[str], dict[str, Any]]
+    _decoder: Callable[[str], Dict[str, Any]]
     _base_url: str
 
     def __init__(self) -> None:
