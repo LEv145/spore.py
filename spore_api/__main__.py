@@ -4,7 +4,7 @@ from typing import Optional
 import asyncclick as click
 
 from spore_api import SporeClient
-from spore_api.enums import AssetType, ViewType
+from spore_api import AssetType, ViewType
 
 
 _client = SporeClient()
