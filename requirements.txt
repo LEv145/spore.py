@@ -1,4 +1,6 @@
-aiohttp==3.8.0
-xmltodict==0.12.0
-dataclasses_json==0.5.6
-click>=8.0.3
+aiohttp
+xmltodict
+dataclasses_json
+click
+asyncclick
+anyio

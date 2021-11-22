@@ -5,3 +5,4 @@ test.py
 dist
 spore.py.egg-info
 static_tests
+.pyinstaller_*
