@@ -41,15 +41,16 @@ Options:
 ```
 
 # Build
-## Linux
 Build binary:
 ```
-make binary
+pyinstaller.spec \
+  --distpath pyinstaller_builds/dist \
+  --workpath pyinstaller_builds/build
 ```
 
-Build for python
+Build for python (requires Python 3.7+)
 ```
-make build
+pip install --editable .
 ```
 
 # Work in Python
