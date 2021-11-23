@@ -25,6 +25,6 @@ setup(
     },
     entry_points="""
     [console_scripts]
-    spore=spore_api.scripts.spore_cli:cli
+    spore_cli=spore_api.__main__:cli
     """
 )

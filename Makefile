@@ -1,9 +1,16 @@
+MAKEDIR = pyinstaller_builds
+
+
 .PHONY: build
 build:
+	pip install --editable .
+
+.PHONY: binary
+binary:
 	pyinstaller pyinstaller.spec \
-		--distpath .pyinstaller_dist \
-		--workpath .pyinstaller_build
+		--distpath pyinstaller_builds/linux_dist \
+		--workpath pyinstaller_builds/linux_build
 
 .PHONY: clean
 clean:
-	rm .pyinstaller_*
+	rm -R pyinstaller_builds

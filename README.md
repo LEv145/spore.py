@@ -1,14 +1,65 @@
 # Spore REST API asyncio client
 * Python 3.7+
 
+# How to use
+```
+> spore_cli.exe --help
+Usage: spore_cli [OPTIONS] COMMAND [ARGS]...
 
-**Install:**
+  CLI for Spore REST API
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  get-asset-comments     Get comments of the asset
+  get-asset-info         Get asset information
+  get-creature           Get creature
+  get-sporecast-assets   Get assets of the sporecast
+  get-stats              Get stats
+  get-user-achievements  Get achievements of the user
+  get-user-assets        Get creature of the user
+  get-user-buddies       Get buddies of the user
+  get-user-info          Get user information
+  get-user-sporecasts    Get sporecasts of the user
+  get-user-subscribers   Get subscribers of the user
+  search-assets          Search assets
+
+> spore_cli.exe search-assets --help
+Usage: spore_cli search-assets [OPTIONS] {top_rated|top_rated_new|newest|featu
+                               red|maxis_made|random|cute_and_creepy}
+                               [START_INDEX] [LENGTH]
+                               [[building|creature|vehicle|adventure|ufo]]
+
+  Search assets
+
+Options:
+  --help  Show this message and exit.
+
+> spore_cli.exe get-creature 500267423060  # Get json info of creature
+{"asset_id": 500267423060, "cost": 4065, "health": 3.0, "height": 1.3428643, "meanness": 9.0, "cuteness": 71.26385, "sense": 1.0, "bonecount": 44.0, "footcount": 4.0, "graspercount": 0.0, "basegear": 0.0, "carnivore": 1.0, "herbivore": 0.0, "glide": 0.0, "sprint": 2.0, "stealth": 2.0, "bite": 3.0, "charge": 2.0, "strike": 4.0, "spit": 0.0, "sing": 1.0, "dance": 2.0, "gesture": 5.0, "posture": 0.0}
+```
+
+# Build
+## Linux
+Build binary:
+```
+make binary
+```
+
+Build for python
+```
+make build
+```
+
+# Work in Python
+
+## Install:
 ```py
 pip install git+https://github.com/LEv145/spore.py
 ```
 
-
-**Simple examples:**
+## Simple examples
 ```py
 import asyncio
 
@@ -46,7 +97,7 @@ def main() -> None:
 main()
 ```
 
-**Client methods:**
+## Client methods
 
 ```py
 get_stats() -> Stats

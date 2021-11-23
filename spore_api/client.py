@@ -181,7 +181,7 @@ class SporeClient():
             )
         )
 
-    async def assets_search(
+    async def search_assets(
         self,
         view_type: ViewType,
         start_index: Union[int, str],
