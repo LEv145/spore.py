@@ -1,4 +1,4 @@
-# Spore REST API asyncio client
+# Spore REST API client
 * Python 3.7+
 
 # How to use
