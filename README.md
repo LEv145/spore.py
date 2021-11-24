@@ -41,7 +41,7 @@ Options:
 # Build
 Build binary:
 ```
-pyinstaller.spec \
+pyinstaller pyinstaller.spec \
   --distpath pyinstaller_builds/dist \
   --workpath pyinstaller_builds/build
 ```
