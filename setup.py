@@ -12,7 +12,7 @@ setup(
     name="spore.py",
     author="LEv145",
     version="1.0",
-    description="Spore REST API client ",
+    description="Spore REST API client",
     install_requires=requirements,
     packages=["spore_api"],
     license="MIT",
