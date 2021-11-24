@@ -3,3 +3,4 @@ mypy>=0.910
 mkinit
 black
 pyinstaller
+twine

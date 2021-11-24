@@ -1,3 +1,5 @@
+![License](https://img.shields.io/badge/license-MIT-green) ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+
 # Spore REST API client
 # How to use
 ```
