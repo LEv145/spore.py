@@ -11,7 +11,7 @@ with open("README.md") as fp:
 setup(
     name="spore.py",
     author="LEv145",
-    version="1.0",
+    version="1.1",
     description="Spore REST API client",
     install_requires=requirements,
     packages=["spore_api"],

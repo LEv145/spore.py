@@ -125,4 +125,5 @@ assets_search(view_type: ViewType, start_index: int | str, length: int | str, as
 
 TODO:
 
-- [ ] Fix bug with parser if getting 1 item (Xml dont have list type)
+- Tests
+- IMPLEMENTATION.md
