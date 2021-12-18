@@ -3,6 +3,8 @@ import json
 from typing import Any, Dict, List
 from pathlib import Path
 
+import xmltodict
+
 from spore_api.constants import BASE_URL
 
 from .utils import datatime_from_string, find_dict_by_value
@@ -27,11 +29,13 @@ from .models import (
 )
 
 
-def build_stats(raw_data: Dict[str, Any]) -> Stats:
+def parse_stats(text: str) -> Stats:
     """
     Build stats
     http://www.spore.com/rest/stats
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(text)  # type: ignore
+
     data: Dict[str, str] = raw_data["stats"]
 
     return Stats(
@@ -42,13 +46,15 @@ def build_stats(raw_data: Dict[str, Any]) -> Stats:
     )
 
 
-def build_creature(raw_data: Dict[str, Any]) -> Creature:
+def parse_creature(text: str) -> Creature:
     """
     [Pages]
 
     Creature stats:
     http://www.spore.com/rest/creature/<CreatureAssetId>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(text)  # type: ignore
+
     data: Dict[str, str] = raw_data["creature"]
 
     return Creature(
@@ -79,13 +85,15 @@ def build_creature(raw_data: Dict[str, Any]) -> Creature:
     )
 
 
-def build_user(raw_data: Dict[str, Any]) -> User:
+def parse_user(text: str) -> User:
     """
     [Pages]
 
     Profile Info:
     http://www.spore.com/rest/user/<Username>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(text)  # type: ignore
+
     data: Dict[str, str] = raw_data["user"]
 
     return User(
@@ -97,7 +105,7 @@ def build_user(raw_data: Dict[str, Any]) -> User:
     )
 
 
-def build_assets(raw_data: Dict[str, Any]) -> Assets:
+def parse_assets(text: str) -> Assets:
     """
     [Pages]
 
@@ -107,6 +115,11 @@ def build_assets(raw_data: Dict[str, Any]) -> Assets:
     Special Searches:
     http://www.spore.com/rest/assets/search/<ViewType>/<StartIndex>/<Length>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("asset",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["assets"]
     raw_assets: List[Dict[str, str]] = data["asset"]
 
@@ -143,13 +156,18 @@ def build_assets(raw_data: Dict[str, Any]) -> Assets:
     )
 
 
-def build_sporecasts(raw_data: Dict[str, Any]) -> Sporecasts:
+def parse_sporecasts(text: str) -> Sporecasts:
     """
     [Pages]
 
     Sporecasts for user:
     http://www.spore.com/rest/sporecasts/<Username>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("sporecast",)
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["sporecasts"]
     raw_sporecast: List[Dict[str, str]] = data["sporecast"]
 
@@ -172,13 +190,18 @@ def build_sporecasts(raw_data: Dict[str, Any]) -> Sporecasts:
     )
 
 
-def build_sporecast_assets(raw_data: Dict[str, Any]) -> SporecastAssets:
+def parse_sporecast_assets(text: str) -> SporecastAssets:
     """
     [Pages]
 
     Assets for sporecast:
     http://www.spore.com/rest/assets/sporecast/<Sporecast Id>/<StartIndex>/<Length>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("asset",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["assets"]
     raw_assets: List[Dict[str, str]] = data["asset"]
 
@@ -217,13 +240,18 @@ def build_sporecast_assets(raw_data: Dict[str, Any]) -> SporecastAssets:
     )
 
 
-def build_achievements(raw_data: Dict[str, Any]) -> Achievements:
+def parse_achievements(text: str) -> Achievements:
     """
     [Pages]
 
     Achievements for user:
     http://www.spore.com/rest/assets/achievements/<Username>/<StartIndex>/<Length>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("achievement",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["achievements"]
     raw_achievements: List[Dict[str, str]] = data["achievement"]
 
@@ -254,7 +282,9 @@ def build_achievements(raw_data: Dict[str, Any]) -> Achievements:
                 name=name,
                 description=description,
                 guid=raw_achievement["guid"],
-                image_url=f"{BASE_URL}/static/war/images/achievements/{raw_achievement['guid']}.png",
+                image_url=(
+                    f"{BASE_URL}/static/war/images/achievements/{raw_achievement['guid']}.png"
+                ),
                 date=datatime_from_string(raw_achievement["date"])
             )
         )
@@ -266,13 +296,18 @@ def build_achievements(raw_data: Dict[str, Any]) -> Achievements:
 
 
 @staticmethod
-def build_full_asset(raw_data: Dict[str, Any]) -> FullAsset:
+def parse_full_asset(text: str) -> FullAsset:
     """
     [Pages]
 
     Info about an asset:
     http://www.spore.com/rest/asset/<AssetId>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("comment",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["asset"]
     raw_comments: List[Dict[str, str]] = data["comments"]["comment"]
 
@@ -312,13 +347,18 @@ def build_full_asset(raw_data: Dict[str, Any]) -> FullAsset:
     )
 
 
-def build_asset_comments(raw_data: Dict[str, Any]) -> AssetComments:
+def parse_asset_comments(text: str) -> AssetComments:
     """
     [Pages]
 
     Comments for an asset:
     http://www.spore.com/rest/comments/<AssetId>/<StartIndex>/<Length>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("comment",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["comments"]
     raw_comments: List[Dict[str, str]] = data["comment"]
 
@@ -335,7 +375,7 @@ def build_asset_comments(raw_data: Dict[str, Any]) -> AssetComments:
     )
 
 
-def build_buddies(raw_data: Dict[str, Any]) -> Buddies:
+def parse_buddies(text: str) -> Buddies:
     """
     [Pages]
 
@@ -345,6 +385,11 @@ def build_buddies(raw_data: Dict[str, Any]) -> Buddies:
     Who has added a user as a buddy:
     http://www.spore.com/rest/users/subscribers/<Username>/<StartIndex>/<Length>
     """
+    raw_data: Dict[str, Any] = xmltodict.parse(
+        text,
+        force_list=("buddy",),
+    )  # type: ignore
+
     data: Dict[str, Any] = raw_data["users"]
     raw_buddy: List[Dict[str, str]] = data["buddy"]
 

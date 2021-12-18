@@ -12,17 +12,17 @@ from spore_api.enums import (
 from spore_api.errors import (
     SporeApiStatusError,
 )
-from spore_api.builders import (
-    build_achievements,
-    build_asset_comments,
-    build_assets,
-    build_buddies,
-    build_creature,
-    build_full_asset,
-    build_sporecast_assets,
-    build_sporecasts,
-    build_stats,
-    build_user,
+from .parsers import (
+    parse_stats,
+    parse_creature,
+    parse_user,
+    parse_assets,
+    parse_sporecasts,
+    parse_sporecast_assets,
+    parse_achievements,
+    parse_full_asset,
+    parse_asset_comments,
+    parse_buddies,
 )
 from spore_api.models import (
     Achievement,
