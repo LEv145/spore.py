@@ -5,18 +5,22 @@ MAKEDIR = pyinstaller_builds
 build:
 	pip install --editable .
 
+.PHONY: install
+install:
+	pip install -r requirements.txt
+
 .PHONY: binary
 binary:
 	pyinstaller pyinstaller.spec \
-		--distpath pyinstaller_builds/linux_dist \
-		--workpath pyinstaller_builds/linux_build
+		--distpath pyinstaller_builds/dist \
+		--workpath pyinstaller_builds/build
 
 .PHONY: sdist
 sdist:
 	python setup.py sdist
 
 .PHONY: upload
-upload:
+upload: sdist
 	twine upload dist/*
 
 .PHONY: clean
