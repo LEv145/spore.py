@@ -46,10 +46,9 @@ Options:
 
 Build binary:
 
-```text
-pyinstaller pyinstaller.spec \
-  --distpath pyinstaller_builds/dist \
-  --workpath pyinstaller_builds/build
+```sh
+make install
+make binary
 ```
 
 Build for python (requires Python 3.7+)
