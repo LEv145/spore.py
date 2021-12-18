@@ -66,6 +66,12 @@ pip install --editable .
 pip install git+https://github.com/LEv145/spore.py
 ```
 
+Or from pypi
+
+```py
+pip install spore.py
+```
+
 ### Simple examples
 
 ```py
