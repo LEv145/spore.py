@@ -16,7 +16,7 @@ import xmltodict
 from .errors import SporeApiStatusError
 from .constants import BASE_URL
 from .enums import AssetType, ViewType
-from .json_builders import (
+from .builders import (
     build_stats,
     build_creature,
     build_user,

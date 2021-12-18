@@ -1,8 +1,10 @@
+# Spore REST API client
+
 ![License](https://img.shields.io/badge/license-MIT-green) ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 
-# Spore REST API client
-# How to use
-```
+## How to use
+
+```text
 > spore_cli.exe --help
 Usage: spore_cli [OPTIONS] COMMAND [ARGS]...
 
@@ -40,27 +42,32 @@ Options:
 {"asset_id": 500267423060, "cost": 4065, "health": 3.0, "height": 1.3428643, "meanness": 9.0, "cuteness": 71.26385, "sense": 1.0, "bonecount": 44.0, "footcount": 4.0, "graspercount": 0.0, "basegear": 0.0, "carnivore": 1.0, "herbivore": 0.0, "glide": 0.0, "sprint": 2.0, "stealth": 2.0, "bite": 3.0, "charge": 2.0, "strike": 4.0, "spit": 0.0, "sing": 1.0, "dance": 2.0, "gesture": 5.0, "posture": 0.0}
 ```
 
-# Build
+## Build
+
 Build binary:
-```
+
+```text
 pyinstaller pyinstaller.spec \
   --distpath pyinstaller_builds/dist \
   --workpath pyinstaller_builds/build
 ```
 
 Build for python (requires Python 3.7+)
-```
+
+```text
 pip install --editable .
 ```
 
-# Work in Python
+## Work in Python
 
-## Install:
+### Install
+
 ```py
 pip install git+https://github.com/LEv145/spore.py
 ```
 
-## Simple examples
+### Simple examples
+
 ```py
 import asyncio
 
@@ -76,6 +83,7 @@ asyncio.run(main())
 ```
 
 In sync code:
+
 ```py
 import asyncio
 
@@ -115,3 +123,6 @@ get_user_subscribers(username: str, start_index: int | str, length: int | str) -
 assets_search(view_type: ViewType, start_index: int | str, length: int | str, asset_type: AssetType | None = None) -> Assets
 ```
 
+TODO:
+
+- [ ] Fix bug with parser if getting 1 item (Xml dont have list type)

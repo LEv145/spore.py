@@ -12,7 +12,7 @@ from spore_api.enums import (
 from spore_api.errors import (
     SporeApiStatusError,
 )
-from spore_api.json_builders import (
+from spore_api.builders import (
     build_achievements,
     build_asset_comments,
     build_assets,
