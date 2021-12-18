@@ -100,6 +100,8 @@ class FullAsset(DataClassJsonMixin):
 
 @dataclass
 class Achievement(DataClassJsonMixin):
+    name: Optional[str]
+    description: Optional[str]
     guid: str
     image_url: str
     date: "datetime"

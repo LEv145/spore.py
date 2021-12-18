@@ -1,11 +1,11 @@
 from setuptools import setup
 
 
-with open("requirements.txt") as f:
-    requirements = f.read().splitlines()
+with open("requirements.txt") as fp:
+    requirements = fp.read().splitlines()
 
-with open("README.md") as f:
-    long_description = f.read()
+with open("README.md") as fp:
+    long_description = fp.read()
 
 
 setup(

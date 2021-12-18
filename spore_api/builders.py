@@ -1,9 +1,11 @@
 import re
+import json
 from typing import Any, Dict, List
+from pathlib import Path
 
 from spore_api.constants import BASE_URL
 
-from .utils import datatime_from_string
+from .utils import datatime_from_string, find_dict_by_value
 from .enums import AssetType, AssetSubtype
 from .models import (
     Achievement,
@@ -225,16 +227,41 @@ def build_achievements(raw_data: Dict[str, Any]) -> Achievements:
     data: Dict[str, Any] = raw_data["achievements"]
     raw_achievements: List[Dict[str, str]] = data["achievement"]
 
-    return Achievements(
-        username=data["input"],
-        achievements=[
+    with open(Path("./spore_api/static/achievements.json")) as fp:
+        achievements_data = json.load(fp)
+
+    achievements: List["Achievement"] = []
+
+    for raw_achievement in raw_achievements:
+        achievement_data = find_dict_by_value(
+            achievements_data,
+            "id",
+            raw_achievement["guid"],
+        )
+        name = (
+            achievement_data.get("name")
+            if achievement_data is not None
+            else None
+        )
+        description = (
+            achievement_data.get("description")
+            if achievement_data is not None
+            else None
+        )
+
+        achievements.append(
             Achievement(
+                name=name,
+                description=description,
                 guid=raw_achievement["guid"],
                 image_url=f"{BASE_URL}/static/war/images/achievements/{raw_achievement['guid']}.png",
                 date=datatime_from_string(raw_achievement["date"])
             )
-            for raw_achievement in raw_achievements
-        ]
+        )
+
+    return Achievements(
+        username=data["input"],
+        achievements=achievements,
     )
 
 

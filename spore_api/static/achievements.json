@@ -1,0 +1,622 @@
+[
+    {
+      "id": "0x0cc8b2c9!0x7e1737dc",
+      "name": "Spore Addict",
+      "description": "Spend 100 hours in your Spore galaxy"
+    },
+    {
+      "id": "0x0cc8b2c9!0x0625c63e",
+      "name": "Flight of the Bumblebee",
+      "description": "Fly for over 200 meters without touching the ground"
+    },
+    {
+      "id": "0x0cc8b2c9!0xd533234c",
+      "name": "Speedfreak",
+      "description": "Finish the Cell stage in under 8 minutes"
+    },
+    {
+      "id": "0x0cc8b2c9!0x75342816",
+      "name": "Scientist Hero",
+      "description": "Achieve Master Badge Level 10 as a Scientist"
+    },
+    {
+      "id": "0x0cc8b2c9!0xd49bf5db",
+      "name": "Conclusion",
+      "description": "Finish the Civilization stage by launching ICBMS and destroying all other cities"
+    },
+    {
+      "id": "0x0cc8b2c9!0x06529cdf",
+      "name": "Front Page News",
+      "description": "Have one of your creations or Sporecasts featured on www.spore.com"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000006",
+      "name": "Everyone's BFF",
+      "description": "Finish the Creature stage by befriending at least 20 other species"
+    },
+    {
+      "id": "0x0cc8b2c9!0xa385eb34",
+      "name": "Ghetto Blaster",
+      "description": "Create 10 Anthems"
+    },
+    {
+      "id": "0x0cc8b2c9!0x8deedbba",
+      "name": "Aluminum Cell",
+      "description": "Complete Cell stage on Hard setting"
+    },
+    {
+      "id": "0x0cc8b2c9!0x398218fd",
+      "name": "Trader Passion",
+      "description": "Play as a Trader"
+    },
+    {
+      "id": "0x0cc8b2c9!0x4cec7fab",
+      "name": "Iron Creature",
+      "description": "Complete Creature stage on Hard setting"
+    },
+    {
+      "id": "0x0cc8b2c9!0x064d3264",
+      "name": "Tribe stage unlocked",
+      "description": "Play enough of the Creature stage to unlock the Tribe stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x6545e161",
+      "name": "Super Pilot",
+      "description": "Spend at least 40 hours piloting your spaceship"
+    },
+    {
+      "id": "0x0cc8b2c9!0xd35167dc",
+      "name": "Military Strongman",
+      "description": "Finish the Civilization stage with more than 8 military cities"
+    },
+    {
+      "id": "0x0cc8b2c9!0x064d2514",
+      "name": "Creature stage unlocked",
+      "description": "Play enough of the Cell stage to unlock the Creature stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x1df0f64e",
+      "name": "Shaman Hero",
+      "description": "Achieve Master Badge Level 10 as a Shaman"
+    },
+    {
+      "id": "0x0cc8b2c9!0x064d35bd",
+      "name": "Space stage unlocked",
+      "description": "Play enough of the Civilization stage to unlock the Space stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0xe1f5cf25",
+      "name": "Gunner",
+      "description": "Destroy at least 500 other space vessels"
+    },
+    {
+      "id": "0x0cc8b2c9!0x064d3560",
+      "name": "Civilization stage unlocked",
+      "description": "Play enough of the Tribe stage to unlock the Civilization stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x84ace4d5",
+      "name": "Warrior Passion",
+      "description": "Play as a Warrior"
+    },
+    {
+      "id": "0x0cc8b2c9!0x6d705bc8",
+      "name": "Starman",
+      "description": "Conquer all the other cities in the Civilization stage and launch your first space vessel"
+    },
+    {
+      "id": "0x0cc8b2c9!0xf3779820",
+      "name": "Biologist",
+      "description": "Make and publish 100 creatures"
+    },
+    {
+      "id": "0x0cc8b2c9!0x667933e7",
+      "name": "Civil Engineer",
+      "description": "Promote 20 alien Tribes to Civilizations"
+    },
+    {
+      "id": "0x0cc8b2c9!0x0599687e",
+      "name": "Warrior Hero",
+      "description": "Achieve Master Badge Level 10 as a Warrior"
+    },
+    {
+      "id": "0x0cc8b2c9!0xe3b7f7e6",
+      "name": "Epic Killer",
+      "description": "Kill an epic in Creature stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0xb956386b",
+      "name": "Cell Addict",
+      "description": "Finish the Cell stage 25 times"
+    },
+    {
+      "id": "0x0cc8b2c9!0x3ddea588",
+      "name": "Trader Hero",
+      "description": "Achieve Master Badge Level 10 as a Trader"
+    },
+    {
+      "id": "0x0cc8b2c9!0x8e5839e1",
+      "name": "Scientist Passion",
+      "description": "Play as a Scientist"
+    },
+    {
+      "id": "0x0cc8b2c9!0xc072a0a6",
+      "name": "Spice Hoarder",
+      "description": "Control every resource node on the planet simultaneously"
+    },
+    {
+      "id": "0x0cc8b2c9!0x73f00565",
+      "name": "Identity Crisis",
+      "description": "Forge an alliance between two space-faring races of your own creation"
+    },
+    {
+      "id": "0x0cc8b2c9!0xefc9ec7a",
+      "name": "Split Personality",
+      "description": "Complete a \"Change Archetype\" mission"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000007",
+      "name": "Founder",
+      "description": "Complete the Tribal stage and build a city"
+    },
+    {
+      "id": "0x0cc8b2c9!0x2d806ed3",
+      "name": "Ecologist Hero",
+      "description": "Achieve Master Badge Level 10 as an Ecologist"
+    },
+    {
+      "id": "0x0cc8b2c9!0xbae19486",
+      "name": "Spore Fan",
+      "description": "Spend 50 hours in your Spore galaxy"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000002",
+      "name": "Cerberus",
+      "description": "Evolve a creature with three heads"
+    },
+    {
+      "id": "0x0cc8b2c9!0x9d1616b3",
+      "name": "Diplomatic Passion",
+      "description": "Play as a Diplomat"
+    },
+    {
+      "id": "0x0cc8b2c9!0x09847038",
+      "name": "Knight Passion",
+      "description": "Play as a Knight"
+    },
+    {
+      "id": "0x0cc8b2c9!0xa571049b",
+      "name": "Quietus Star",
+      "description": "Destroy 20 planets"
+    },
+    {
+      "id": "0x0cc8b2c9!0xa98fa57b",
+      "name": "Pacifist",
+      "description": "Finish the Cell stage without killing another creature"
+    },
+    {
+      "id": "0x0cc8b2c9!0x216abd79",
+      "name": "Rolling Thunder",
+      "description": "Complete the Civilization stage in less than an hour"
+    },
+    {
+      "id": "0x0cc8b2c9!0x06528ce8",
+      "name": "Rising Star",
+      "description": "Have 5 different Sporecasts subscribed to by at least 10 people"
+    },
+    {
+      "id": "0x0cc8b2c9!0xf3c5e40b",
+      "name": "Slugger",
+      "description": "Finish Creature stage without legs"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000005",
+      "name": "Max Power",
+      "description": "Build a creature with maximum stats in at least 4 abilities in Creature stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x06529a18",
+      "name": "Bad Baby!",
+      "description": "Have one of your assets banned"
+    },
+    {
+      "id": "0x0cc8b2c9!0xbcc06ea3",
+      "name": "Architect",
+      "description": "Create and share 50 buildings"
+    },
+    {
+      "id": "0x0cc8b2c9!0xe0b639d4",
+      "name": "Palm Greaser",
+      "description": "Pay 50 bribes in the Space stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000008",
+      "name": "Tribal Socialite",
+      "description": "Convert all 5 opposing tribes to your belief system"
+    },
+    {
+      "id": "0x0cc8b2c9!0xe2d1021c",
+      "name": "Missionary",
+      "description": "Finish the Civilization stage with more than 8 religious cities"
+    },
+    {
+      "id": "0x0cc8b2c9!0x7cb21213",
+      "name": "Shaman Passion",
+      "description": "Play as a Shaman"
+    },
+    {
+      "id": "0x0cc8b2c9!0x4b4d347e",
+      "name": "Thief",
+      "description": "Steal 50 crates of spice in the Space stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x8015dbf7",
+      "name": "Manifest Destiny",
+      "description": "Find Earth"
+    },
+    {
+      "id": "0x0cc8b2c9!0xeb5abcea",
+      "name": "Bard Passion",
+      "description": "Play as a Bard"
+    },
+    {
+      "id": "0x0cc8b2c9!0x41d06199",
+      "name": "Knight Hero",
+      "description": "Achieve Master Badge Level 10 as a Knight"
+    },
+    {
+      "id": "0x0cc8b2c9!0x2c8b38ae",
+      "name": "Speed Demon",
+      "description": "Finish Creature stage within an hour"
+    },
+    {
+      "id": "0x0cc8b2c9!0xfaed9b7e",
+      "name": "Completist",
+      "description": "Unlock all the parts in the Cell stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000009",
+      "name": "Vicious",
+      "description": "Kill all members of all 5 opposing tribes and raze their villages"
+    },
+    {
+      "id": "0x0cc8b2c9!0xc0e29cf0",
+      "name": "Bestial",
+      "description": "Play the Creature stage 10 times"
+    },
+    {
+      "id": "0x0cc8b2c9!0xfa4efdb1",
+      "name": "Steel Tribe",
+      "description": "Complete Tribe stage on Hard setting"
+    },
+    {
+      "id": "0x0cc8b2c9!0x47143c0d",
+      "name": "Evolver",
+      "description": "Finish Creature stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000001",
+      "name": "Domestic Bliss",
+      "description": "Domesticate and farm three different species"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000006",
+      "name": "Medic",
+      "description": "Heal one of your tribe members back to full health 5x in a single game"
+    },
+    {
+      "id": "0x0cc8b2c9!0x6fbc539a",
+      "name": "Foe",
+      "description": "Extinct at least 20 other species in Creature stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x9568e11f",
+      "name": "Alter Ego",
+      "description": "Play the Space stage as all 10 archetypes"
+    },
+    {
+      "id": "0x0cc8b2c9!0xe5fddec0",
+      "name": "Fear of Flying",
+      "description": "Finish the Civilization stage without ever buying an aircraft"
+    },
+    {
+      "id": "0x0cc8b2c9!0x060dd27f",
+      "name": "Pathological Cheater",
+      "description": "Use a cheat more than 50 times"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000003",
+      "name": "Tribal",
+      "description": "Complete the Tribal stage 10 times"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000004",
+      "name": "Ergonomically Terrific!",
+      "description": "Complete the Tribal stage in less than an hour"
+    },
+    {
+      "id": "0x0cc8b2c9!0x51b14e82",
+      "name": "Adamantium Civilization",
+      "description": "Complete Civilization stage on Hard setting"
+    },
+    {
+      "id": "0x0cc8b2c9!0x2b031bab",
+      "name": "Bard Hero",
+      "description": "Achieve Master Badge Level 10 as a Bard"
+    },
+    {
+      "id": "0x0cc8b2c9!0xd3869727",
+      "name": "Zealot Hero",
+      "description": "Achieve Master Badge Level 10 as a Zealot"
+    },
+    {
+      "id": "0x0cc8b2c9!0x99889638",
+      "name": "Automotive Engineer",
+      "description": "Make and publish 50 vehicles"
+    },
+    {
+      "id": "0x0cc8b2c9!0xb9ff8f07",
+      "name": "Wanderer Passion",
+      "description": "Play as a Wanderer"
+    },
+    {
+      "id": "0x0cc8b2c9!0xdb8060ba",
+      "name": "Galactic God",
+      "description": "Evolve from a cell to a space traveler in one continuous game"
+    },
+    {
+      "id": "0x0cc8b2c9!0xbc3c424d",
+      "name": "Relentless",
+      "description": "Complete the Civilization stage 10 times"
+    },
+    {
+      "id": "0x0cc8b2c9!0xea17c094",
+      "name": "Maxis Scout",
+      "description": "Earn 100 badges in the Space stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0x2ea6824f",
+      "name": "Photographer",
+      "description": "Send a photo or video to a friend from Test Drive mode"
+    },
+    {
+      "id": "0x0cc8b2c9!0x20000002",
+      "name": "Watchful Parent",
+      "description": "Complete the Tribal stage without the death of a single tribe member"
+    },
+    {
+      "id": "0x0cc8b2c9!0x6e7b4971",
+      "name": "Survivor",
+      "description": "Finish Creature stage without dying"
+    },
+    {
+      "id": "0x0cc8b2c9!0x99bf707c",
+      "name": "Creator",
+      "description": "Spend 50 hours in the creators"
+    },
+    {
+      "id": "0x0cc8b2c9!0xfa91fc77",
+      "name": "Alter Ego's Alter Ego",
+      "description": "Achieve Master Badge Level 10 as all 10 archetypes"
+    },
+    {
+      "id": "0x0cc8b2c9!0x214732fb",
+      "name": "Deja Vu",
+      "description": "Discover something you created in another game"
+    },
+    {
+      "id": "0x0cc8b2c9!0x451ef13f",
+      "name": "Economist",
+      "description": "Finish the Civilization stage with more than 8 economic cities"
+    },
+    {
+      "id": "0x0cc8b2c9!0x8ecc8901",
+      "name": "Oh the Humanity!",
+      "description": "Destroy Earth"
+    },
+    {
+      "id": "0x0cc8b2c9!0xc24774b4",
+      "name": "Bio-Engineer",
+      "description": "Edit 25 creatures with the Creature Tweaker"
+    },
+    {
+      "id": "0x0cc8b2c9!0x7edeb516",
+      "name": "Zealot Passion",
+      "description": "Play as a Zealot"
+    },
+    {
+      "id": "0x0cc8b2c9!0x81f75a74",
+      "name": "Zoo Keeper",
+      "description": "Make 15 zoo planets"
+    },
+    {
+      "id": "0x0cc8b2c9!0x483bdf48",
+      "name": "Universe In A Box",
+      "description": "Play in every stage and every creator"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000001",
+      "name": "Socialite",
+      "description": "Meet 200 creatures made by other players"
+    },
+    {
+      "id": "0x0cc8b2c9!0xdaeb93cc",
+      "name": "Conquistador",
+      "description": "Capture 15 Star Systems"
+    },
+    {
+      "id": "0x0cc8b2c9!0xaaa4929a",
+      "name": "Can't Win For Losing",
+      "description": "Die at least once in every stage of Spore"
+    },
+    {
+      "id": "0x0cc8b2c9!0x0586e9d4",
+      "name": "Ecologist Passion",
+      "description": "Play as an Ecologist"
+    },
+    {
+      "id": "0x0cc8b2c9!0xcecf61f6",
+      "name": "Diplomatic Hero",
+      "description": "Achieve Master Badge Level 10 as a Diplomat"
+    },
+    {
+      "id": "0x0cc8b2c9!0xf9065832",
+      "name": "Landfall",
+      "description": "Finish the Cell stage and clamber onto the planet's surface"
+    },
+    {
+      "id": "0x0cc8b2c9!0x181282d4",
+      "name": "Devourer",
+      "description": "Eat 50 different species across any number of games"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000004",
+      "name": "Village Folks",
+      "description": "Have three posse members from different species"
+    },
+    {
+      "id": "0x0cc8b2c9!0x06529e50",
+      "name": "Social Engineer",
+      "description": "Make 5 Sporecasts of 50 creations or more"
+    },
+    {
+      "id": "0x0cc8b2c9!0xdb56ac5e",
+      "name": "Wanderer Hero",
+      "description": "Achieve Master Badge Level 10 as a Wanderer"
+    },
+    {
+      "id": "0x0cc8b2c9!0x19988ceb",
+      "name": "Quest Master",
+      "description": "Complete 150 missions in the Space stage"
+    },
+    {
+      "id": "0x0cc8b2c9!0xb3bfabf0",
+      "name": 42,
+      "description": "Find the center of the galaxy"
+    },
+    {
+      "id": "0x0cc8b2c9!0x1e859775",
+      "name": "Empire Builder",
+      "description": "Maximize colonies on 10 planets"
+    },
+    {
+      "id": "0x0cc8b2c9!0x10000003",
+      "name": "General Custer",
+      "description": "Lead 30 posse members to their death"
+    },
+    {
+      "id": "0x0cc8b2c9!0xd6736ef2",
+      "name": "Careless Parent",
+      "description": "Lose 5 planets"
+    },
+    {
+      "id": "0x9a5acf10!0x00000051",
+      "name": "Military",
+      "description": "Military civilizations thrive on weapons and force. They'll use every resource available to destroy other nations."
+    },
+    {
+      "id": "0x9a5acf10!0x0000004b",
+      "name": "Aggressive",
+      "description": "Aggressive tribes try to exterminate the competition. They ruthlessly attack and hoard all the resources for themselves."
+    },
+    {
+      "id": "0x9a5acf10!0x00000046",
+      "name": "Predator",
+      "description": "Predatory creatures spend their lives searching for prey. They'd sooner make extinct an entire species than \"dance\" or \"charm\"."
+    },
+    {
+      "id": "0x9a5acf10!0x0000005b",
+      "name": "Zealot",
+      "description": "Zealots are certain that their beliefs are the only truth that matters. Those who do not feel the same way are not worthy to exist in this galaxy."
+    },
+    {
+      "id": "0x9a5acf10!0x00000053",
+      "name": "Economic",
+      "description": "Economic civilizations use cash and trade routes to influence other nations. They'll make alliances, but it's usually a better deal for them."
+    },
+    {
+      "id": "0x9a5acf10!0x00000057",
+      "name": "Bard",
+      "description": "Bards are the social, outgoing entertainers of the cosmos. The galaxy is their personal playground."
+    },
+    {
+      "id": "0x9a5acf10!0x00000044",
+      "name": "Omnivore",
+      "description": "Omnivorous cells eat any type of food available."
+    },
+    {
+      "id": "0x9a5acf10!0x0000004d",
+      "name": "Friendly",
+      "description": "Friendly tribes understand the importance of teamwork. They form alliances to share resources and prosper with other tribes."
+    },
+    {
+      "id": "0x9a5acf10!0x00000055",
+      "name": "Religious",
+      "description": "Religious civilizations harness the power of words and ideas to convert other nations to their way of thinking."
+    },
+    {
+      "id": "0x9a5acf10!0x0000005f",
+      "name": "Scientist",
+      "description": "Scientists are logical and calculating. The galaxy exists to be studied and understood."
+    },
+    {
+      "id": "0x9a5acf10!0x00000067",
+      "name": "Wanderer",
+      "description": "Wanderers want to sample a little bit of everything. The galaxy is vast and they want to experience it all."
+    },
+    {
+      "id": "0x9a5acf10!0x00000042",
+      "name": "Herbivore",
+      "description": "Herbivorous cells consume a diet of plant matter."
+    },
+    {
+      "id": "0x9a5acf10!0x00000059",
+      "name": "Ecologist",
+      "description": "Ecologists are the protectors of nature. Species that attempt to exploit and corrupt the galaxy must be exterminated."
+    },
+    {
+      "id": "0x9a5acf10!0x0000005d",
+      "name": "Diplomat",
+      "description": "Diplomats are negotiators and problem solvers. Peace will come to the galaxy only through open communication between species."
+    },
+    {
+      "id": "0x9a5acf10!0x00000061",
+      "name": "Trader",
+      "description": "Traders are in it for the profit. Their only allegiance is to the almighty Sporebuck."
+    },
+    {
+      "id": "0x9a5acf10!0x00000049",
+      "name": "Adaptable",
+      "description": "Adaptable creatures have many friends and many enemies. They make choices based on the current situation."
+    },
+    {
+      "id": "0x9a5acf10!0x0000004f",
+      "name": "Industrious",
+      "description": "Industrious tribes seize the moment, attacking or forming alliances when necessary. They make great allies, but watch out."
+    },
+    {
+      "id": "0x9a5acf10!0x00000063",
+      "name": "Shaman",
+      "description": "Shamans understand that all life shares a common bond. The entire galaxy exists within us all."
+    },
+    {
+      "id": "0x9a5acf10!0x00000040",
+      "name": "Carnivore",
+      "description": "Carnivorous cells consume a diet of meat."
+    },
+    {
+      "id": "0x9a5acf10!0x00000065",
+      "name": "Warrior",
+      "description": "Warriors take what they want and never ask for permission. The galaxy is a prize to be claimed by the strongest."
+    },
+    {
+      "id": "0x9a5acf10!0x00000069",
+      "name": "Knight",
+      "description": "Knights are noble warriors that fight for right, not for personal gain. Peace will come to the galaxy only when evil has been vanquished."
+    },
+    {
+      "id": "0x9a5acf10!0x00000147",
+      "name": "Social",
+      "description": "Social creatures are constantly searching for new friends and allies. Meeting a new species is the highlight of their day."
+    }
+  ]
