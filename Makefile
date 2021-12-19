@@ -6,6 +6,8 @@ else
 	OS_NAME = ${shell uname -s}
 endif
 
+OS_NAME_LOWER = $(shell python -c "print('$(OS_NAME)'.lower())")
+
 
 .PHONY: build
 build:
@@ -18,8 +20,8 @@ install:
 .PHONY: binary
 binary:
 	pyinstaller pyinstaller.spec \
-		--distpath ${MAKEDIR}/dist_${OS_NAME} \
-		--workpath ${MAKEDIR}/build_${OS_NAME}
+		--distpath ${MAKEDIR}/dist_${OS_NAME_LOWER} \
+		--workpath ${MAKEDIR}/build_${OS_NAME_LOWER}
 
 .PHONY: sdist
 sdist:
