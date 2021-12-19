@@ -1,5 +1,11 @@
 MAKEDIR = pyinstaller_builds
 
+ifeq ($(OS), Windows_NT)
+	OS_NAME = ${OS}
+else
+	OS_NAME = ${shell uname -s}
+endif
+
 
 .PHONY: build
 build:
@@ -12,8 +18,8 @@ install:
 .PHONY: binary
 binary:
 	pyinstaller pyinstaller.spec \
-		--distpath pyinstaller_builds/dist \
-		--workpath pyinstaller_builds/build
+		--distpath ${MAKEDIR}/dist_${OS_NAME} \
+		--workpath ${MAKEDIR}/build_${OS_NAME}
 
 .PHONY: sdist
 sdist:
@@ -25,4 +31,4 @@ upload: sdist
 
 .PHONY: clean
 clean:
-	rm -R pyinstaller_builds
+	rm -R ${MAKEDIR}
